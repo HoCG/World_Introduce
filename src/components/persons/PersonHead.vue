@@ -38,14 +38,14 @@ export default defineComponent({
       position: absolute;
       left: 150px;
       width: 150px;
-      height: 125px;
-      border-radius: 0 0 0 150px;
+      height: 110px;
+      border-radius: 0 0 0 110px;
     }
     &--right {
       position: absolute;
       width: 200px;
-      height: 125px;
-      border-radius: 0 0 150px 0;
+      height: 110px;
+      border-radius: 0 0 110px 0;
     }
   }
   .person__face {
