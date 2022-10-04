@@ -1,0 +1,25 @@
+{
+  "person": [
+    {
+      "name": "영수",
+      "gender": "남",
+      "age": 26,
+      "personalColor": "#e5a966",
+      "hairColor": "#aca9c1"
+    },
+    {
+      "name": "민지",
+      "gender": "여",
+      "age": 25,
+      "personalColor": "#efe4c1",
+      "hairColor": "#90ab12"
+    },
+    {
+      "name": "성현",
+      "gender": "남",
+      "age": 32,
+      "personalColor": "#f1dfc1",
+      "hairColor": "#000000"
+    }
+  ]
+}
