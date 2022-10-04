@@ -21,13 +21,13 @@ export default defineComponent({
   props: {
     person: person,
   },
-  data() {
+  setup(props) {
     return {
       personStyle: {
-        backgroundColor: this.person?.getPersonalColor(),
+        backgroundColor: props.person?.getPersonalColor(),
       },
       hairStyle: {
-        backgroundColor: this.person?.getHairColor(),
+        backgroundColor: props.person?.getHairColor(),
       },
     };
   },

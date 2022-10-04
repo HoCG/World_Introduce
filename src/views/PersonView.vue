@@ -9,7 +9,6 @@
 </template>
 <script lang="ts">
 import Person from "@/components/persons/Person.vue";
-import { mapActions, mapState } from "pinia";
 import { personStore } from "../stores/personStore";
 import data from "../assets/data.json";
 import { defineComponent } from "vue";
@@ -20,13 +19,8 @@ export default defineComponent({
   components: {
     Person,
   },
-  computed: {
-    ...mapState(personStore, ["personArr"]),
-  },
-  methods: {
-    ...mapActions(personStore, ["addPerson"]),
-  },
-  mounted() {
+  setup() {
+    const usePersonStore = personStore();
     let privateNum = 0 as number;
     for (const getPerson of data.person) {
       const newPerson = new person(
@@ -37,10 +31,14 @@ export default defineComponent({
         getPerson.personalColor,
         getPerson.hairColor
       );
-      this.addPerson(newPerson);
+      usePersonStore.addPerson(newPerson);
       ++privateNum;
     }
-    console.log(this.personArr);
+    console.log(usePersonStore.personArr);
+    const personArr = usePersonStore.personArr;
+    return {
+      personArr,
+    };
   },
 });
 </script>
