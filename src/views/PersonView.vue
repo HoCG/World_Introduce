@@ -17,11 +17,6 @@ import person from "@/stores/person";
 
 export default defineComponent({
   name: "PersonView",
-  data() {
-    return {
-      index: 0,
-    };
-  },
   components: {
     Person,
   },
@@ -32,7 +27,7 @@ export default defineComponent({
     ...mapActions(personStore, ["addPerson"]),
   },
   mounted() {
-    let privateNum = 0;
+    let privateNum = 0 as number;
     for (const getPerson of data.person) {
       const newPerson = new person(
         privateNum,
