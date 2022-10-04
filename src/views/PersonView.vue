@@ -34,7 +34,6 @@ export default defineComponent({
       usePersonStore.addPerson(newPerson);
       ++privateNum;
     }
-    console.log(usePersonStore.personArr);
     const personArr = usePersonStore.personArr;
     return {
       personArr,
