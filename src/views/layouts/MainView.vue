@@ -1,97 +1,80 @@
 <template>
-  <div class="main-view">
-    <HomeView></HomeView>
-    <PersonView></PersonView>
-  </div>
   <main class="sticky-container" ref="sticky-container">
     <div class="sticky">
       <div class="slide-container">
         <div class="slide" ref="sl1">
-          <FirstView></FirstView>
-        </div>
-        <div class="scdown" ref="scdown">
-          <div class="scdown-text"></div>
+          <HomeView></HomeView>
         </div>
         <div class="slide" ref="sl2">
-          <SecondView></SecondView>
+          <PersonView></PersonView>
         </div>
-        <div class="slide sl3" ref="sl3">
-          <ThirdView></ThirdView>
-        </div>
-        <div class="slide slide-left sl4" ref="sl4">
-          <FourthView></FourthView>
-        </div>
-        <div class="wave" ref="wave">뭔가 독립적으로 움직이는 배경</div>
-        <div class="slide slide-left sl5" ref="sl5">
-          <FifthView></FifthView>
-        </div>
+        <div class="slide" ref="sl3"></div>
+        <div class="slide" ref="sl4"></div>
+        <div class="slide" ref="sl5"></div>
       </div>
     </div>
   </main>
 </template>
-<script lang="ts">
-import { defineComponent, onBeforeUnmount, onBeforeMount, ref } from "vue";
+<script>
 import { def } from "./index";
-import HomeView from "./HomeView.vue";
+import HomeView from "../HomeView.vue";
 import PersonView from "../PersonView.vue";
-import bezierEasing from "bezier-easing";
-export default defineComponent({
+let enabled = new Map();
+let disabled = new Map();
+
+const isAmong = (num, top, bottom) => num >= top && num <= bottom;
+
+const applyStyle = (element, styleName, value, unit = "px") => {
+  if (styleName === "translateY") {
+    // eslint-disable-next-line no-param-reassign
+    element.style.transform = `translateY(${value}${unit})`;
+    return;
+  }
+  if (styleName === "translateX") {
+    // eslint-disable-next-line no-param-reassign
+    element.style.transform = `translateX(${value}${unit})`;
+    return;
+  }
+  // eslint-disable-next-line no-param-reassign
+  element.style[styleName] = value;
+};
+
+export default {
   components: {
     HomeView,
     PersonView,
   },
-  setup() {
-    let enabled = new Map();
-    let disabled = new Map();
-    const isAmong = (num: number, top: number, bottom: number) =>
-      num >= top && num <= bottom;
-    const applyStyle = (
-      element: HTMLElement,
-      styleName: any,
-      value: any,
-      unit = "px" as string
-    ) => {
-      if (styleName === "translateY") {
-        // eslint-disable-next-line no-param-reassign
-        element.style.transform = `translateY(${value}${unit})`;
-        return;
-      }
-      if (styleName === "translateX") {
-        // eslint-disable-next-line no-param-reassign
-        element.style.transform = `translateX(${value}${unit})`;
-        return;
-      }
-      // eslint-disable-next-line no-param-reassign
-      element.style[styleName] = value;
-    };
-    onBeforeUnmount(() => {
-      window.removeEventListener("scroll", onScroll);
-    });
-    onBeforeMount(() => {
-      initAnimation();
-      window.addEventListener("scroll", onScroll);
-    });
+
+  mounted() {
+    this.init();
+    window.addEventListener("scroll", this.onScroll);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
+
+  methods: {
+    init() {
+      this.initAnimation();
+    },
     // 애니메이션 초기화
-    const initAnimation = () => {
+    initAnimation() {
       // Sticky Conainer 의 높이를 설정함.
       this.$refs["sticky-container"].style.height = `${def.height}px`;
 
       // disabled, enabled 를 비움.
       disabled.clear();
       enabled.clear();
+
       // 모든 요소를 disabled 에 넣음.
       for (const refname of Object.keys(def.elements)) {
-        disabled.set(
-          refname,
-          def.elements[refname as keyof typeof def.elements]
-        );
+        disabled.set(refname, def.elements[refname]);
       }
 
       // 각 애니메이션을 enabled == false 로 만듬.
       for (const refname of Object.keys(def.animations)) {
-        for (const animation of def.animations[
-          refname as keyof typeof def.elements
-        ]) {
+        for (const animation of def.animations[refname]) {
           animation.enabled = false;
         }
       }
@@ -104,22 +87,16 @@ export default defineComponent({
         });
       });
       // 이미 요소의 범위 및 애니메이션의 범위에 있는 것들을 렌더링하기 위해 임의로 스크롤 이벤트 핸들러를 한 번 실행시킴.
-      onScroll();
-    };
-    const applyStyles = (
-      currentPos: number,
-      refname: string,
-      styles: any,
-      r: number,
-      unit = "px"
-    ) => {
+      this.onScroll();
+    },
+    applyStyles(currentPos, refname, styles, r, unit = "px") {
       for (const style of Object.keys(styles)) {
         const { topValue, bottomValue } = styles[style];
         const calc = (bottomValue - topValue) * r + topValue;
         applyStyle(this.$refs[refname], style, calc, unit);
       }
-    };
-    const applyAllAnimation = (currentPos: number, refname: string) => {
+    },
+    applyAllAnimation(currentPos, refname) {
       const animations = def.animations[refname];
       if (!animations) return;
       for (const animation of animations) {
@@ -130,9 +107,9 @@ export default defineComponent({
           if (!animation.enabled) animation.enabled = true;
         } else if (!isIn && animation.enabled) {
           if (currentPos <= a_top) {
-            applyStyles(currentPos, refname, styles, 0);
+            this.applyStyles(currentPos, refname, styles, 0);
           } else if (currentPos >= a_bottom) {
-            applyStyles(currentPos, refname, styles, 1);
+            this.applyStyles(currentPos, refname, styles, 1);
           }
           // eslint-disable-next-line no-param-reassign
           animation.enabled = false;
@@ -142,11 +119,11 @@ export default defineComponent({
         if (animation.enabled) {
           const r = easing((currentPos - a_top) / (a_bottom - a_top));
           // eslint-disable-next-line no-param-reassign
-          applyStyles(currentPos, refname, styles, r);
+          this.applyStyles(currentPos, refname, styles, r);
         }
       }
-    };
-    const onScroll = () => {
+    },
+    onScroll() {
       // 현재 스크롤 위치 파악
       const scrollTop = window.scrollY || window.pageYOffset;
       const currentPos = scrollTop + window.innerHeight / 2;
@@ -191,12 +168,12 @@ export default defineComponent({
             refname // enable 순회중, 범위 내부에 제대로 있다면 각 애니메이션 적용시키기.
           );
         } else {
-          applyAllAnimation(currentPos, refname);
+          this.applyAllAnimation(currentPos, refname);
         }
       });
-    };
+    },
   },
-});
+};
 </script>
 <style lang="scss">
 .sticky {
