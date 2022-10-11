@@ -2,11 +2,13 @@
   <div class="person-view">
     <div>지구에는 수많은 사람들이 함께살고있어 보이지?</div>
     <div>사람들은 서로다른 모습, 서로다른 생각을 하며 살고있지</div>
-    <Person
-      v-for="[index, person] in personArr"
-      :key="index"
-      :person="person"
-    ></Person>
+    <div class="person-box">
+      <Person
+        v-for="[index, person] in personArr"
+        :key="index"
+        :person="person"
+      ></Person>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -48,6 +50,12 @@ export default defineComponent({
   display: flex;
   width: 100%;
   justify-content: center;
+  flex-direction: column;
   align-content: center;
+  .person-box {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
 }
 </style>
