@@ -8,6 +8,7 @@
     <div class="person__face" :style="personStyle">
       <div class="person__eyes--left"></div>
       <div class="person__eyes--right"></div>
+      <div class="person__mouth"></div>
     </div>
   </div>
 </template>
@@ -22,10 +23,9 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .person__head {
+  position: relative;
   width: 300px;
   height: 350px;
-  display: flex;
-  flex-direction: column;
   .person__hair {
     position: relative;
     border-radius: 40px 40px 0px 0px;
@@ -47,6 +47,38 @@ export default defineComponent({
       height: 110px;
       border-radius: 0 0 110px 0;
     }
+  }
+  .person__eyes {
+    &--left {
+      z-index: 999;
+      top: 160px;
+      left: 50px;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      position: absolute;
+      background-color: black;
+    }
+    &--right {
+      z-index: 999;
+      top: 160px;
+      right: 50px;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      position: absolute;
+      background-color: black;
+    }
+  }
+  .person__mouth {
+    top: 300px;
+    left: 150px;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 60px;
+    border-radius: 0 0 100px 100px;
+    position: absolute;
+    background-color: red;
   }
   .person__face {
     z-index: -20;
