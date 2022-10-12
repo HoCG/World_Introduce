@@ -63,10 +63,9 @@ export default {
   methods: {
     skyInit() {
       //estrelas
-
-      var style = ["style1", "style2", "style3", "style4"];
-      var tam = ["tam1", "tam1", "tam1", "tam2", "tam3"];
-      var opacity = [
+      const style = ["style1", "style2", "style3", "style4"];
+      const tam = ["tam1", "tam1", "tam1", "tam2", "tam3"];
+      const opacity = [
         "opacity1",
         "opacity1",
         "opacity1",
@@ -75,17 +74,17 @@ export default {
         "opacity3",
       ];
 
-      function getRandomArbitrary(min, max) {
+      const getRandomArbitrary = (min, max) => {
         return Math.floor(Math.random() * (max - min)) + min;
-      }
+      };
 
-      var estrela = "";
-      var qtdeEstrelas = 250;
-      var noite = document.querySelector(".constelacao");
-      var widthWindow = window.innerWidth;
-      var heightWindow = window.innerHeight;
+      let estrela = "";
+      const qtdeEstrelas = 250;
+      const noite = document.querySelector(".constelacao");
+      const widthWindow = window.innerWidth;
+      const heightWindow = window.innerHeight;
 
-      for (var i = 0; i < qtdeEstrelas; i++) {
+      for (let i = 0; i < qtdeEstrelas; i++) {
         estrela +=
           "<span class='estrela " +
           style[getRandomArbitrary(0, 4)] +
@@ -104,20 +103,20 @@ export default {
 
       noite.innerHTML = estrela;
       var numeroAleatorio = 5000;
-      setTimeout(function () {
+      setTimeout(() => {
         carregarMeteoro();
       }, numeroAleatorio);
 
-      function carregarMeteoro() {
+      const carregarMeteoro = () => {
         setTimeout(carregarMeteoro, numeroAleatorio);
         numeroAleatorio = getRandomArbitrary(5000, 10000);
-        var meteoro =
+        const meteoro =
           "<div class='meteoro " + style[getRandomArbitrary(0, 4)] + "'></div>";
         document.getElementsByClassName("chuvaMeteoro")[0].innerHTML = meteoro;
-        setTimeout(function () {
+        setTimeout(() => {
           document.getElementsByClassName("chuvaMeteoro")[0].innerHTML = "";
         }, 1000);
-      }
+      };
     },
     init() {
       this.initAnimation();
