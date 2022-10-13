@@ -28,7 +28,7 @@ import PersonView from "../PersonView.vue";
 let enabled = new Map();
 let disabled = new Map();
 
-const isAmong = (num: number, top: number, bottom: number) =>
+const isAmong = (num: number, top: number, bottom: number): boolean =>
   num >= top && num <= bottom;
 
 const applyStyle = (
@@ -75,8 +75,8 @@ export default defineComponent({
     });
     const skyInit = () => {
       //estrelas
-      const style = ["style1", "style2", "style3", "style4"];
-      const tam = ["tam1", "tam1", "tam1", "tam2", "tam3"];
+      const style = ["style1", "style2", "style3", "style4"] as string[];
+      const tam = ["tam1", "tam1", "tam1", "tam2", "tam3"] as string[];
       const opacity = [
         "opacity1",
         "opacity1",
@@ -84,12 +84,12 @@ export default defineComponent({
         "opacity2",
         "opacity2",
         "opacity3",
-      ];
+      ] as string[];
       const getRandomArbitrary = (min: number, max: number) => {
-        return Math.floor(Math.random() * (max - min)) + min;
+        return (Math.floor(Math.random() * (max - min)) + min) as number;
       };
-      let estrela = "";
-      const qtdeEstrelas = 250;
+      let estrela = "" as string;
+      const qtdeEstrelas = 250 as number;
       const noite: HTMLElement | any = document.querySelector(".constelacao");
       const widthWindow = window.innerWidth;
       const heightWindow = window.innerHeight;
@@ -161,7 +161,7 @@ export default defineComponent({
       refname: string,
       styles: any,
       r: number,
-      unit = "px"
+      unit = "px" as string
     ) => {
       for (const style of Object.keys(styles)) {
         const { topValue, bottomValue } = styles[style];
@@ -198,11 +198,12 @@ export default defineComponent({
     };
     const onScroll = () => {
       // 현재 스크롤 위치 파악
-      const scrollTop = window.scrollY || window.pageYOffset;
+      const scrollTop: number =
+        (window.scrollY as number) || (window.pageYOffset as number);
       const currentPos = scrollTop + window.innerHeight / 2;
 
       // disabled 순회하며 활성화할 요소 찾기.
-      disabled.forEach((obj, refname) => {
+      disabled.forEach((obj, refname: string) => {
         // 만약 칸에 있다면 해당 요소 활성화
         if (isAmong(currentPos, obj.top, obj.bottom)) {
           enabled.set(refname, obj);
@@ -213,7 +214,7 @@ export default defineComponent({
       });
 
       // enabled 순회하면서 헤제할 요소를 체크
-      enabled.forEach((obj, refname) => {
+      enabled.forEach((obj, refname: string) => {
         const { top, bottom, topStyle, bottomStyle } = obj;
         // console.log(`${top}, ${bottom}, ${topStyle}, ${bottomStyle}`); 범위 밖에 있다면
         if (!isAmong(currentPos, top, bottom)) {
