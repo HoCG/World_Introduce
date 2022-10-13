@@ -28,29 +28,6 @@ import PersonView from "../PersonView.vue";
 let enabled = new Map();
 let disabled = new Map();
 
-const isAmong = (num: number, top: number, bottom: number): boolean =>
-  num >= top && num <= bottom;
-
-const applyStyle = (
-  element: HTMLElement | any,
-  styleName: string,
-  value: string,
-  unit = "px"
-) => {
-  if (styleName === "translateY") {
-    // eslint-disable-next-line no-param-reassign
-    element.style.transform = `translateY(${value}${unit})`;
-    return;
-  }
-  if (styleName === "translateX") {
-    // eslint-disable-next-line no-param-reassign
-    element.style.transform = `translateX(${value}${unit})`;
-    return;
-  }
-  // eslint-disable-next-line no-param-reassign
-  element.style[styleName] = value;
-};
-
 export default defineComponent({
   components: {
     HomeView,
@@ -85,14 +62,11 @@ export default defineComponent({
         "opacity2",
         "opacity3",
       ] as string[];
-      const getRandomArbitrary = (min: number, max: number) => {
-        return (Math.floor(Math.random() * (max - min)) + min) as number;
-      };
       let estrela = "" as string;
       const qtdeEstrelas = 250 as number;
       const noite: HTMLElement | any = document.querySelector(".constelacao");
-      const widthWindow = window.innerWidth;
-      const heightWindow = window.innerHeight;
+      const widthWindow: number = window.innerWidth;
+      const heightWindow: number = window.innerHeight;
       for (let i = 0; i < qtdeEstrelas; i++) {
         estrela +=
           "<span class='estrela " +
@@ -110,20 +84,23 @@ export default defineComponent({
           "px;'></span>";
       }
       noite.innerHTML = estrela;
-      let numeroAleatorio = 5000;
+      let numeroAleatorio = 5000 as number;
       setTimeout(() => {
         carregarMeteoro();
       }, numeroAleatorio);
       const carregarMeteoro = () => {
         setTimeout(carregarMeteoro, numeroAleatorio);
         numeroAleatorio = getRandomArbitrary(5000, 10000);
-        const meteoro =
+        const meteoro: string =
           "<div class='meteoro " + style[getRandomArbitrary(0, 4)] + "'></div>";
         document.getElementsByClassName("chuvaMeteoro")[0].innerHTML = meteoro;
         setTimeout(() => {
           document.getElementsByClassName("chuvaMeteoro")[0].innerHTML = "";
         }, 1000);
       };
+    };
+    const getRandomArbitrary = (min: number, max: number): number => {
+      return (Math.floor(Math.random() * (max - min)) + min) as number;
     };
     // 애니메이션 초기화
     const initAnimation = () => {
@@ -156,19 +133,42 @@ export default defineComponent({
       // 이미 요소의 범위 및 애니메이션의 범위에 있는 것들을 렌더링하기 위해 임의로 스크롤 이벤트 핸들러를 한 번 실행시킴.
       onScroll();
     };
+    //위로 나갔는지 확인해주는 함수
+    const isAmong = (num: number, top: number, bottom: number): boolean =>
+      num >= top && num <= bottom;
     const applyStyles = (
-      currentPos: number,
       refname: string,
       styles: any,
-      r: number,
+      animateCalc: number,
       unit = "px" as string
     ) => {
       for (const style of Object.keys(styles)) {
         const { topValue, bottomValue } = styles[style];
-        const calc = (bottomValue - topValue) * r + topValue;
-        applyStyle(refs[refname].value, style, calc, unit);
+        const translateValue: number =
+          (bottomValue - topValue) * animateCalc + topValue;
+        applyStyle(refs[refname].value, style, translateValue, unit);
       }
     };
+    const applyStyle = (
+      element: HTMLElement | any,
+      styleName: string,
+      translateValue: number,
+      unit = "px" as string
+    ) => {
+      if (styleName === "translateY") {
+        // eslint-disable-next-line no-param-reassign
+        element.style.transform = `translateY(${translateValue}${unit})`;
+        return;
+      }
+      if (styleName === "translateX") {
+        // eslint-disable-next-line no-param-reassign
+        element.style.transform = `translateX(${translateValue}${unit})`;
+        return;
+      }
+      // eslint-disable-next-line no-param-reassign
+      element.style[styleName] = translateValue;
+    };
+    //애니메이션 적용 함수
     const applyAllAnimation = (currentPos: number, refname: string) => {
       const animations = def.animations[refname];
       if (!animations) return;
@@ -180,9 +180,9 @@ export default defineComponent({
           if (!animation.enabled) animation.enabled = true;
         } else if (!isIn && animation.enabled) {
           if (currentPos <= a_top) {
-            applyStyles(currentPos, refname, styles, 0);
+            applyStyles(refname, styles, 0);
           } else if (currentPos >= a_bottom) {
-            applyStyles(currentPos, refname, styles, 1);
+            applyStyles(refname, styles, 1);
           }
           // eslint-disable-next-line no-param-reassign
           animation.enabled = false;
@@ -190,9 +190,11 @@ export default defineComponent({
 
         // 애니메이션이 enabled 라면, 애니메이션 적용.
         if (animation.enabled) {
-          const r = easing((currentPos - a_top) / (a_bottom - a_top));
+          const animateCalc: number = easing(
+            (currentPos - a_top) / (a_bottom - a_top)
+          );
           // eslint-disable-next-line no-param-reassign
-          applyStyles(currentPos, refname, styles, r);
+          applyStyles(refname, styles, animateCalc);
         }
       }
     };
@@ -231,7 +233,6 @@ export default defineComponent({
                 styleName,
                 bottomStyle[styleName]
               );
-              // refs[refname].style[styleName] = bottomStyle[styleName];
             });
           }
           // 리스트에서 삭제하고 disabled로 옮김.
