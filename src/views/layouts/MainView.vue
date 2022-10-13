@@ -1,6 +1,6 @@
 <template>
   <div class="noite">
-    <main class="sticky-container" ref="sticky-container">
+    <main class="sticky-container" ref="sticky_container">
       <div class="sticky">
         <div class="slide-container">
           <div class="constelacao"></div>
@@ -20,16 +20,23 @@
   </div>
   <div class="constelacao"></div>
 </template>
-<script>
+<script lang="ts">
 import { def } from "./index";
+import { defineComponent, ref, onMounted, onUnmounted } from "vue";
 import HomeView from "../HomeView.vue";
 import PersonView from "../PersonView.vue";
 let enabled = new Map();
 let disabled = new Map();
 
-const isAmong = (num, top, bottom) => num >= top && num <= bottom;
+const isAmong = (num: number, top: number, bottom: number) =>
+  num >= top && num <= bottom;
 
-const applyStyle = (element, styleName, value, unit = "px") => {
+const applyStyle = (
+  element: HTMLElement | any,
+  styleName: string,
+  value: string,
+  unit = "px"
+) => {
   if (styleName === "translateY") {
     // eslint-disable-next-line no-param-reassign
     element.style.transform = `translateY(${value}${unit})`;
@@ -44,24 +51,29 @@ const applyStyle = (element, styleName, value, unit = "px") => {
   element.style[styleName] = value;
 };
 
-export default {
+export default defineComponent({
   components: {
     HomeView,
     PersonView,
   },
-
-  mounted() {
-    this.skyInit();
-    this.init();
-    window.addEventListener("scroll", this.onScroll);
-  },
-
-  beforeUnmount() {
-    window.removeEventListener("scroll", this.onScroll);
-  },
-
-  methods: {
-    skyInit() {
+  setup() {
+    const refs: any = {
+      sticky_container: ref(null),
+      sl1: ref(null),
+      sl2: ref(null),
+      sl3: ref(null),
+      sl4: ref(null),
+      sl5: ref(null),
+    };
+    onMounted(() => {
+      skyInit();
+      initAnimation();
+      window.addEventListener("scroll", onScroll);
+    });
+    onUnmounted(() => {
+      window.removeEventListener("scroll", onScroll);
+    });
+    const skyInit = () => {
       //estrelas
       const style = ["style1", "style2", "style3", "style4"];
       const tam = ["tam1", "tam1", "tam1", "tam2", "tam3"];
@@ -73,17 +85,14 @@ export default {
         "opacity2",
         "opacity3",
       ];
-
-      const getRandomArbitrary = (min, max) => {
+      const getRandomArbitrary = (min: number, max: number) => {
         return Math.floor(Math.random() * (max - min)) + min;
       };
-
       let estrela = "";
       const qtdeEstrelas = 250;
-      const noite = document.querySelector(".constelacao");
+      const noite: HTMLElement | any = document.querySelector(".constelacao");
       const widthWindow = window.innerWidth;
       const heightWindow = window.innerHeight;
-
       for (let i = 0; i < qtdeEstrelas; i++) {
         estrela +=
           "<span class='estrela " +
@@ -100,13 +109,11 @@ export default {
           getRandomArbitrary(0, heightWindow) +
           "px;'></span>";
       }
-
       noite.innerHTML = estrela;
-      var numeroAleatorio = 5000;
+      let numeroAleatorio = 5000;
       setTimeout(() => {
         carregarMeteoro();
       }, numeroAleatorio);
-
       const carregarMeteoro = () => {
         setTimeout(carregarMeteoro, numeroAleatorio);
         numeroAleatorio = getRandomArbitrary(5000, 10000);
@@ -117,14 +124,11 @@ export default {
           document.getElementsByClassName("chuvaMeteoro")[0].innerHTML = "";
         }, 1000);
       };
-    },
-    init() {
-      this.initAnimation();
-    },
+    };
     // 애니메이션 초기화
-    initAnimation() {
+    const initAnimation = () => {
       // Sticky Conainer 의 높이를 설정함.
-      this.$refs["sticky-container"].style.height = `${def.height}px`;
+      refs["sticky_container"].value.style.height = `${def.height}px`;
 
       // disabled, enabled 를 비움.
       disabled.clear();
@@ -146,20 +150,26 @@ export default {
       disabled.forEach((obj, refname) => {
         Object.keys(obj.topStyle).forEach((styleName) => {
           const pushValue = obj.topStyle[styleName];
-          this.$refs[refname].style[styleName] = pushValue;
+          refs[refname].value.style[styleName] = pushValue;
         });
       });
       // 이미 요소의 범위 및 애니메이션의 범위에 있는 것들을 렌더링하기 위해 임의로 스크롤 이벤트 핸들러를 한 번 실행시킴.
-      this.onScroll();
-    },
-    applyStyles(currentPos, refname, styles, r, unit = "px") {
+      onScroll();
+    };
+    const applyStyles = (
+      currentPos: number,
+      refname: string,
+      styles: any,
+      r: number,
+      unit = "px"
+    ) => {
       for (const style of Object.keys(styles)) {
         const { topValue, bottomValue } = styles[style];
         const calc = (bottomValue - topValue) * r + topValue;
-        applyStyle(this.$refs[refname], style, calc, unit);
+        applyStyle(refs[refname].value, style, calc, unit);
       }
-    },
-    applyAllAnimation(currentPos, refname) {
+    };
+    const applyAllAnimation = (currentPos: number, refname: string) => {
       const animations = def.animations[refname];
       if (!animations) return;
       for (const animation of animations) {
@@ -170,9 +180,9 @@ export default {
           if (!animation.enabled) animation.enabled = true;
         } else if (!isIn && animation.enabled) {
           if (currentPos <= a_top) {
-            this.applyStyles(currentPos, refname, styles, 0);
+            applyStyles(currentPos, refname, styles, 0);
           } else if (currentPos >= a_bottom) {
-            this.applyStyles(currentPos, refname, styles, 1);
+            applyStyles(currentPos, refname, styles, 1);
           }
           // eslint-disable-next-line no-param-reassign
           animation.enabled = false;
@@ -182,11 +192,11 @@ export default {
         if (animation.enabled) {
           const r = easing((currentPos - a_top) / (a_bottom - a_top));
           // eslint-disable-next-line no-param-reassign
-          this.applyStyles(currentPos, refname, styles, r);
+          applyStyles(currentPos, refname, styles, r);
         }
       }
-    },
-    onScroll() {
+    };
+    const onScroll = () => {
       // 현재 스크롤 위치 파악
       const scrollTop = window.scrollY || window.pageYOffset;
       const currentPos = scrollTop + window.innerHeight / 2;
@@ -196,8 +206,8 @@ export default {
         // 만약 칸에 있다면 해당 요소 활성화
         if (isAmong(currentPos, obj.top, obj.bottom)) {
           enabled.set(refname, obj);
-          this.$refs[refname].classList.remove("disabled");
-          this.$refs[refname].classList.add("enabled");
+          refs[refname].value.classList.remove("disabled");
+          refs[refname].value.classList.add("enabled");
           disabled.delete(refname);
         }
       });
@@ -210,31 +220,34 @@ export default {
           // 위로 나갔다면 시작하는 스타일 적용
           if (currentPos <= top) {
             Object.keys(topStyle).forEach((styleName) => {
-              applyStyle(this.$refs[refname], styleName, topStyle[styleName]);
+              applyStyle(refs[refname].value, styleName, topStyle[styleName]);
               // 아래로 나갔다면 끝나는 스타일적용);
             });
           } else if (currentPos >= bottom) {
             Object.keys(bottomStyle).forEach((styleName) => {
               applyStyle(
-                this.$refs[refname],
+                refs[refname].value,
                 styleName,
                 bottomStyle[styleName]
               );
-              // this.$refs[refname].style[styleName] = bottomStyle[styleName];
+              // refs[refname].style[styleName] = bottomStyle[styleName];
             });
           }
           // 리스트에서 삭제하고 disabled로 옮김.
           disabled.set(refname, obj);
-          this.$refs[refname].classList.remove("enabled");
-          this.$refs[refname].classList.add("disabled");
+          refs[refname].value.classList.remove("enabled");
+          refs[refname].value.classList.add("disabled");
           enabled.delete(
             refname // enable 순회중, 범위 내부에 제대로 있다면 각 애니메이션 적용시키기.
           );
         } else {
-          this.applyAllAnimation(currentPos, refname);
+          applyAllAnimation(currentPos, refname);
         }
       });
-    },
+    };
+    return {
+      ...refs,
+    };
   },
-};
+});
 </script>
