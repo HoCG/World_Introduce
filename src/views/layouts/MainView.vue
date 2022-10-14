@@ -4,7 +4,6 @@
       <div class="sticky">
         <div class="slide-container">
           <div class="constelacao"></div>
-          <div class="chuvaMeteoro"></div>
           <div class="slide" ref="sl1">
             <HomeView></HomeView>
           </div>
@@ -84,20 +83,6 @@ export default defineComponent({
           "px;'></span>";
       }
       noite.innerHTML = estrela;
-      let numeroAleatorio = 5000 as number;
-      setTimeout(() => {
-        carregarMeteoro();
-      }, numeroAleatorio);
-      const carregarMeteoro = () => {
-        setTimeout(carregarMeteoro, numeroAleatorio);
-        numeroAleatorio = getRandomArbitrary(5000, 10000);
-        const meteoro: string =
-          "<div class='meteoro " + style[getRandomArbitrary(0, 4)] + "'></div>";
-        document.getElementsByClassName("chuvaMeteoro")[0].innerHTML = meteoro;
-        setTimeout(() => {
-          document.getElementsByClassName("chuvaMeteoro")[0].innerHTML = "";
-        }, 1000);
-      };
     };
     const getRandomArbitrary = (min: number, max: number): number => {
       return (Math.floor(Math.random() * (max - min)) + min) as number;
