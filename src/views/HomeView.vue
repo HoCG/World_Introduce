@@ -1,12 +1,8 @@
 <template>
-  <svg width="400" height="200" viewBox="0 0 400 200">
-    <text x="40" y="65%">S</text>
-    <text x="85" y="60%">V</text>
-    <text x="130" y="60%">G</text>
-    <text x="190" y="60%">T</text>
-    <text x="230" y="65%">E</text>
-    <text x="275" y="70%">S</text>
-    <text x="320" y="66%">T</text>
+  <svg width="1000" height="200" viewBox="0 0 1000 200">
+    <text x="40" y="40%">안녕</text>
+    <text x="300" y="40%">외계인</text>
+    <text x="40" y="90%">지구에 온걸 환영해</text>
   </svg>
 </template>
 
