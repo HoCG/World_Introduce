@@ -17,7 +17,6 @@
       </div>
     </main>
   </div>
-  <div class="constelacao"></div>
 </template>
 <script lang="ts">
 import { def } from "./index";
