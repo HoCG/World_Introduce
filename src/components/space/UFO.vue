@@ -1,10 +1,5 @@
 <template>
   <div class="ufo-contain">
-    <div class="tractor-beam">
-      <div class="dribbble">
-        <a href="https://dribbble.com/DXC" target="_blank" title="Do it..."></a>
-      </div>
-    </div>
     <div class="ufo-lower">
       <div class="lights">
         <span></span>
@@ -29,11 +24,12 @@
 .ufo-contain {
   width: 150px;
   height: 50px;
-  margin-top: -50px;
+  margin-top: -70px;
+  margin-left: 60%;
+  transform: rotate(15deg);
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
-  .transform(translate(-50%, -50%) rotate(15deg) scale(1, 1));
   .keyframes(stray;{
 		0% { top: 49.5%; left: 50.5%; }
 		30% { top: 50.5%; left: 49.5%; }
@@ -41,9 +37,17 @@
 		70% { top: 49.5%; left: 49.5%; }
 		100% { top: 49.5%; left: 50.5%; }
 	});
-  .animation(stray 6s ease-in-out infinite alternate);
+  .keyframes(movement;{
+    0% {
+      transform: scale(0.01) rotate(15deg);
+    }
+    100% { 
+      animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
+      transform: scale( 1 ) rotate(15deg) translateX(-150px) translateY(200px);
+    }
+  });
+  .animation(movement 2s forwards cubic-bezier(0.02, 0.01, 0.21, 1));
   .aa;
-
   @media all and (max-width: 768px) and (orientation: landscape) {
     margin-top: -50px;
   }
@@ -257,100 +261,6 @@
     border-radius: 100%;
     box-shadow: inset -12px 12px 0px 0px rgba(255, 255, 255, 0.6);
     .transform(translate(-50%, -50%));
-  }
-}
-
-.tractor-beam {
-  box-shadow: 0px 43px 100px 4px #fff;
-  .perspective(200px);
-  -webkit-perspective-origin: 50% 100%; /* Chrome, Safari, Opera */
-  perspective-origin: 50% 100%;
-
-  &:before {
-    content: "";
-    background-color: #f7fff7;
-    width: 60px;
-    height: 500px;
-    position: absolute;
-    top: 25px;
-    left: 50%;
-    opacity: 0.6;
-    padding: 1px;
-    .transform-origin(50%, 0%);
-    .transform(translate(-50%, 0%) rotateX(45deg));
-    .keyframes(lightshift;{
-			0% { .transform(translate(-50%, 0%) rotateX(45deg)); opacity: 0.6; }
-			100% { .transform(translate(-50%, 0%) rotateX(40deg)); opacity: 0.5; }
-		});
-    .animation(lightshift 3s ease-in-out infinite alternate);
-    .aa;
-  }
-
-  .dribbble {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 160px;
-    left: 50%;
-    border-radius: 100%;
-    .perspective(200px);
-    -webkit-perspective-origin: 50% 100%; /* Chrome, Safari, Opera */
-    perspective-origin: 50% 100%;
-    .transform(translate(-50%, 0%));
-    .keyframes(float;{
-			0% { top: 160px; }
-			100% { top: 130px; }
-		});
-    .animation(float 6s ease-in-out infinite alternate);
-    .aa;
-
-    &:before {
-      content: "";
-      background-color: #252525;
-      width: 40px;
-      height: 600px;
-      position: absolute;
-      top: 20px;
-      opacity: 0.6;
-      pointer-events: none;
-      .transform-origin(50%, 0%);
-      .transform(rotateX(45deg));
-      .keyframes(shadowshift;{
-				0% { .transform(rotateX(45deg)); }
-				100% { .transform(rotateX(30deg)); }
-			});
-      .animation(shadowshift 6s ease-in-out infinite alternate);
-      .aa;
-    }
-
-    a {
-      width: 40px;
-      height: 40px;
-      display: block;
-      border-radius: 100%;
-      box-shadow: 0px 0px 0px 0px #fff;
-      .transition(0.5s);
-
-      &:hover {
-        box-shadow: 0px 0px 20px 1px #fff;
-      }
-    }
-
-    &:after {
-      content: "";
-      background: transparent
-        url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/581960/dribbble-icon.svg)
-        50% 50% / contain no-repeat;
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      top: 0%;
-      left: 50%;
-      border-radius: 100%;
-      box-shadow: inset 0px -10px 0px 0px rgba(0, 0, 0, 0.6);
-      pointer-events: none;
-      .transform(translate(-50%, 0%));
-    }
   }
 }
 
