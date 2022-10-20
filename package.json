@@ -11,10 +11,12 @@
     "bezier-easing": "^2.1.0",
     "core-js": "^3.8.3",
     "pinia": "^2.0.22",
+    "three-orbitcontrols-ts": "^0.1.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
+    "@types/three": "^0.144.0",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",
     "@vue/cli-plugin-babel": "~5.0.0",
@@ -33,6 +35,7 @@
     "prettier": "^2.4.1",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
+    "three": "^0.145.0",
     "typescript": "^4.8.4"
   }
 }

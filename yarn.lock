@@ -1274,10 +1274,22 @@
   dependencies:
     "@types/node" "*"
 
+"@types/three@^0.144.0":
+  "integrity" "sha512-psvEs6q5rLN50jUYZ3D4pZMfxTbdt3A243blt0my7/NcL6chaCZpHe2csbCtx0SOD9fI/XnF3wnVUAYZGqCSYg=="
+  "resolved" "https://registry.npmjs.org/@types/three/-/three-0.144.0.tgz"
+  "version" "0.144.0"
+  dependencies:
+    "@types/webxr" "*"
+
 "@types/webpack-env@^1.15.2":
   "integrity" "sha512-56/MAlX5WMsPVbOg7tAxnYvNYMMWr/QJiIp6BxVSW3JJXUVzzOn64qW8TzQyMSqSUFM2+PVI4aUHcHOzIz/1tg=="
   "resolved" "https://registry.npmmirror.com/@types/webpack-env/-/webpack-env-1.18.0.tgz"
   "version" "1.18.0"
+
+"@types/webxr@*":
+  "integrity" "sha512-IUMDPSXnYIbEO2IereEFcgcqfDREOgmbGqtrMpVPpACTU6pltYLwHgVkrnYv0XhWEcjio9sYEfIEzgn3c7nDqA=="
+  "resolved" "https://registry.npmjs.org/@types/webxr/-/webxr-0.5.0.tgz"
+  "version" "0.5.0"
 
 "@types/ws@^8.5.1":
   "integrity" "sha512-6YOoWjruKj1uLf3INHH7D3qTXwFfEsg1kf3c0uDdSBJwfa/llkwIjrAGV7j7mVgGNbzTQ3HiHKKDXl6bJPD97w=="
@@ -6021,6 +6033,23 @@
     "loader-utils" "^2.0.0"
     "neo-async" "^2.6.2"
     "schema-utils" "^3.0.0"
+
+"three-orbitcontrols-ts@^0.1.2":
+  "integrity" "sha512-HG45dhJX4010lt/Ohk2d2K0kBaxCS6NLO3+wG9BDfMM5ddH7zMPuF3fhcn8vI4eqcSITtid0OoHEttHhjkIKEQ=="
+  "resolved" "https://registry.npmjs.org/three-orbitcontrols-ts/-/three-orbitcontrols-ts-0.1.2.tgz"
+  "version" "0.1.2"
+  dependencies:
+    "three" "^0.83.0"
+
+"three@^0.145.0":
+  "integrity" "sha512-EKoHQEtEJ4CB6b2BGMBgLZrfwLjXcSUfoI/MiIXUuRpeYsfK5aPWbYhdtIVWOH+x6X0TouldHKHBuc/LAiFzAw=="
+  "resolved" "https://registry.npmjs.org/three/-/three-0.145.0.tgz"
+  "version" "0.145.0"
+
+"three@^0.83.0":
+  "integrity" "sha512-x9TqsmvhHG/Lw16Zi9zbJ0ho+kP8SgIfsz8dJYZbeWaFWoVwdXKolQQAftkUlpuKDys1+6SZIBHoA2QdoZKByQ=="
+  "resolved" "https://registry.npmjs.org/three/-/three-0.83.0.tgz"
+  "version" "0.83.0"
 
 "thunky@^1.0.2":
   "integrity" "sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA=="
