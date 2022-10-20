@@ -3,7 +3,7 @@ const easeIn = bezierEasing(0.38, 0.01, 0.78, 0.13);
 const midSlow = bezierEasing(0, 0.7, 1, 0.3);
 import bezierEasing from "bezier-easing";
 export const def: any = {
-  height: 7100,
+  height: 9700,
   elements: {
     sl1: {
       top: 0,
@@ -28,10 +28,22 @@ export const def: any = {
       bottom: 5500,
       topStyle: { opacity: 0 },
       bottomStyle: { opacity: 0 },
-    },
+    }, //1300
     sl5: {
       top: 5600,
-      bottom: 8500,
+      bottom: 6900,
+      topStyle: { opacity: 0 },
+      bottomStyle: { opacity: 0 },
+    }, //2900
+    sl6: {
+      top: 7000,
+      bottom: 8300,
+      topStyle: { opacity: 0 },
+      bottomStyle: { opacity: 0 },
+    },
+    sl7: {
+      top: 8400,
+      bottom: 11300,
       topStyle: { opacity: 0 },
       bottomStyle: { opacity: 0 },
     },
@@ -133,6 +145,46 @@ export const def: any = {
       {
         top: 6300,
         bottom: 6900,
+        easing: easeIn,
+        styles: { opacity: { topValue: 1, bottomValue: 0 } },
+      },
+    ],
+    sl6: [
+      {
+        top: 7000,
+        bottom: 8300,
+        easing: midSlow,
+        styles: { translateY: { topValue: 60, bottomValue: -60 } },
+      },
+      {
+        top: 7000,
+        bottom: 7800,
+        easing: ease,
+        styles: { opacity: { topValue: 0, bottomValue: 1 } },
+      },
+      {
+        top: 7700,
+        bottom: 8300,
+        easing: easeIn,
+        styles: { opacity: { topValue: 1, bottomValue: 0 } },
+      },
+    ],
+    sl7: [
+      {
+        top: 8400,
+        bottom: 9700,
+        easing: midSlow,
+        styles: { translateY: { topValue: 60, bottomValue: -60 } },
+      },
+      {
+        top: 8400,
+        bottom: 9200,
+        easing: ease,
+        styles: { opacity: { topValue: 0, bottomValue: 1 } },
+      },
+      {
+        top: 9100,
+        bottom: 9700,
         easing: easeIn,
         styles: { opacity: { topValue: 1, bottomValue: 0 } },
       },

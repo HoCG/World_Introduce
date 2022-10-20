@@ -8,11 +8,23 @@
             <HomeView></HomeView>
           </div>
           <div class="slide" ref="sl2">
+            <SeaView></SeaView>
+          </div>
+          <div class="slide" ref="sl3">
+            <LandView></LandView>
+          </div>
+          <div class="slide" ref="sl4">
             <PersonView></PersonView>
           </div>
-          <div class="slide" ref="sl3"></div>
-          <div class="slide" ref="sl4"></div>
-          <div class="slide" ref="sl5"></div>
+          <div class="slide" ref="sl5">
+            <PersonWalkView></PersonWalkView>
+          </div>
+          <div class="slide" ref="sl6">
+            <MeetAlienAndPersonView></MeetAlienAndPersonView>
+          </div>
+          <div class="slide" ref="sl7">
+            <EarthView></EarthView>
+          </div>
         </div>
       </div>
     </main>
@@ -23,6 +35,11 @@ import { def } from "./index";
 import { defineComponent, ref, onMounted, onUnmounted } from "vue";
 import HomeView from "../HomeView.vue";
 import PersonView from "../PersonView.vue";
+import SeaView from "../SeaView.vue";
+import LandView from "../LandView.vue";
+import PersonWalkView from "../PersonWalkView.vue";
+import MeetAlienAndPersonView from "../MeetAlienAndPersonView.vue";
+import EarthView from "../EarthView.vue";
 let enabled = new Map();
 let disabled = new Map();
 
@@ -30,6 +47,11 @@ export default defineComponent({
   components: {
     HomeView,
     PersonView,
+    SeaView,
+    LandView,
+    PersonWalkView,
+    MeetAlienAndPersonView,
+    EarthView,
   },
   setup() {
     const refs: any = {
@@ -39,6 +61,8 @@ export default defineComponent({
       sl3: ref(null),
       sl4: ref(null),
       sl5: ref(null),
+      sl6: ref(null),
+      sl7: ref(null),
     };
     onMounted(() => {
       skyInit();
