@@ -1,5 +1,5 @@
 <template>
-  <div id="earth-view"></div>
+  <div id="earth"></div>
 </template>
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
@@ -248,10 +248,16 @@ export default defineComponent({
     };
     onMounted(() => {
       render();
-      (document.getElementById("earth-view") as HTMLElement).appendChild(
+      (document.getElementById("earth") as HTMLElement).appendChild(
         renderer.domElement
       );
     });
   },
 });
 </script>
+<style>
+.earth {
+  position: absolute;
+  top: -100px;
+}
+</style>
