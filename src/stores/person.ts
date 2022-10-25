@@ -1,11 +1,15 @@
 class person implements personInterFace {
   constructor(
-    public _id: number,
-    public _name: string,
-    public _gender: string,
-    public _age: number,
-    public _personalColor: string,
-    public _hairColor: string
+    private _id: number,
+    private _name: string,
+    private _gender: string,
+    private _age: number,
+    private _personalColor: string,
+    private _hairColor: string,
+    private _topClothColor: string,
+    private _bottomClothColor: string,
+    private _scaleNumber: number,
+    private _speed: number
   ) {
     this._id = _id;
     this._name = _name;
@@ -13,6 +17,10 @@ class person implements personInterFace {
     this._age = _age;
     this._personalColor = _personalColor;
     this._hairColor = _hairColor;
+    this._topClothColor = _topClothColor;
+    this._bottomClothColor = _bottomClothColor;
+    this._scaleNumber = _scaleNumber;
+    this._speed = _speed;
   }
   setId(id: number): void {
     this._id = id;
@@ -49,6 +57,30 @@ class person implements personInterFace {
   }
   getHairColor(): string {
     return this._hairColor;
+  }
+  setTopClothColor(topClothColor: string): void {
+    this._topClothColor = topClothColor;
+  }
+  getTopClothColor(): string {
+    return this._topClothColor;
+  }
+  setBottomClothColor(bottomClothColor: string): void {
+    this._bottomClothColor = bottomClothColor;
+  }
+  getBottomClothColor(): string {
+    return this._bottomClothColor;
+  }
+  setScaleNumber(scaleNumber: number): void {
+    this._scaleNumber = scaleNumber;
+  }
+  getScaleNumber(): number {
+    return this._scaleNumber;
+  }
+  setSpeed(speed: number): void {
+    this._speed = speed;
+  }
+  getSpeed(): number {
+    return this._speed;
   }
 }
 

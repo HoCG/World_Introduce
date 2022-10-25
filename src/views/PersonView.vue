@@ -33,7 +33,11 @@ export default defineComponent({
         getPerson.gender,
         getPerson.age,
         getPerson.personalColor,
-        getPerson.hairColor
+        getPerson.hairColor,
+        "",
+        "",
+        0,
+        0
       );
       usePersonStore.addPerson(newPerson);
       ++privateNum;
