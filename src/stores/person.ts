@@ -8,6 +8,7 @@ class person implements personInterFace {
     private _hairColor: string,
     private _topClothColor: string,
     private _bottomClothColor: string,
+    private _shoesColor: string,
     private _scaleNumber: number,
     private _speed: number
   ) {
@@ -19,6 +20,7 @@ class person implements personInterFace {
     this._hairColor = _hairColor;
     this._topClothColor = _topClothColor;
     this._bottomClothColor = _bottomClothColor;
+    this._shoesColor = _shoesColor;
     this._scaleNumber = _scaleNumber;
     this._speed = _speed;
   }
@@ -69,6 +71,12 @@ class person implements personInterFace {
   }
   getBottomClothColor(): string {
     return this._bottomClothColor;
+  }
+  setShoesColor(shoesColor: string): void {
+    this._shoesColor = shoesColor;
+  }
+  getShoesColor(): string {
+    return this._shoesColor;
   }
   setScaleNumber(scaleNumber: number): void {
     this._scaleNumber = scaleNumber;

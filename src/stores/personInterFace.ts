@@ -15,6 +15,8 @@ interface personInterFace {
   getTopClothColor(): string;
   setBottomClothColor(bottomClothColor: string): void;
   getBottomClothColor(): string;
+  setShoesColor(shoesColor: string): void;
+  getShoesColor(): string;
   setScaleNumber(scaleNumber: number): void;
   getScaleNumber(): number;
   setSpeed(speed: number): void;
