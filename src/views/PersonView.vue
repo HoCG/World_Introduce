@@ -24,9 +24,14 @@ export default defineComponent({
     Person,
   },
   setup() {
+    const rand = (min: number, max: number): number => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
     const usePersonStore = personStore();
+    const scaleArr = [-1, 1];
     let privateNum = 0 as number;
     for (const getPerson of data.person) {
+      const randomScaleNumber = rand(0, 1);
       const newPerson = new person(
         privateNum,
         getPerson.name,
@@ -34,11 +39,11 @@ export default defineComponent({
         getPerson.age,
         getPerson.personalColor,
         getPerson.hairColor,
-        "",
-        "",
-        "",
-        0,
-        0
+        getPerson.topClothColor,
+        getPerson.bottomClothColor,
+        getPerson.shoesColor,
+        scaleArr[randomScaleNumber],
+        rand(5, 9)
       );
       usePersonStore.addPerson(newPerson);
       ++privateNum;
