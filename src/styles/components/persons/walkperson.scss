@@ -22,7 +22,6 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #000;
   position: absolute;
   margin-top: 32.5px;
   margin-left: -22.5px;
@@ -41,12 +40,10 @@
   width: 60px;
   height: 17.5px;
   border-radius: 100px 100px 0 0;
-  background: #000;
 }
 
 .middle-part {
   z-index: 1;
-  background: linear-gradient(yellow 80%, #000 20%);
   height: 100px;
   width: 25px;
   position: absolute;
@@ -62,7 +59,6 @@
   height: 125px;
   width: 12.5px;
   border-radius: 0 0 100px 100px;
-  background-color: #fbebcd;
   float: left;
 }
 
@@ -80,7 +76,6 @@
 .right-cloth {
   height: 100px;
   width: 12.5px;
-  background: yellow;
   position: absolute;
 }
 
@@ -89,7 +84,6 @@
   top: 110px;
   width: 40px;
   height: 20px;
-  background: skyblue;
   border-radius: 0 100px 30px 0;
   position: absolute;
 }
@@ -100,7 +94,6 @@
   margin-left: -7.5px;
   height: 125px;
   width: 12.5px;
-  background: #000;
   float: left;
 }
 .left-hand,

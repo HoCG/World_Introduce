@@ -1,29 +1,26 @@
 <template>
   <div class="man-body" :style="bodyStyle">
     <div class="man-body__container">
-      <div class="man-head">
-        <div class="man-hear"></div>
-        <div class="man-face">
+      <div class="man-head" :style="hairStyle">
+        <div class="man-hear" :style="hairStyle"></div>
+        <div class="man-face" :style="skinStyle">
           <div class="man-eye"></div>
           <div class="man-mouth"></div>
         </div>
       </div>
-      <div class="left-hand">
-        <div class="left-cloth"></div>
+      <div class="left-hand" :style="skinStyle">
+        <div class="left-cloth" :style="topClothColor"></div>
       </div>
-      <div class="middle-part">
-        <div class="middle-part__top"></div>
-        <div class="middle-part__bottom"></div>
-      </div>
-      <div class="right-hand">
-        <div class="right-cloth"></div>
+      <div class="middle-part" :style="bodyClothStyle"></div>
+      <div class="right-hand" :style="skinStyle">
+        <div class="right-cloth" :style="topClothColor"></div>
       </div>
     </div>
-    <div class="left-leg">
-      <div class="left-shoe"></div>
+    <div class="left-leg" :style="bottomClothColor">
+      <div class="left-shoe" :style="shoesColor"></div>
     </div>
-    <div class="right-leg">
-      <div class="left-shoe"></div>
+    <div class="right-leg" :style="bottomClothColor">
+      <div class="left-shoe" :style="shoesColor"></div>
     </div>
   </div>
 </template>
@@ -43,8 +40,24 @@ export default defineComponent({
     } else {
       bodyStyle.animation = `ManBodyScale2 ${props.person?.getSpeed()}s infinite linear`;
     }
+    const hairStyle = { backgroundColor: props.person?.getHairColor() };
+    const skinStyle = { backgroundColor: props.person?.getPersonalColor() };
+    const topClothColor = { backgroundColor: props.person?.getTopClothColor() };
+    const bodyClothStyle = {
+      background: `linear-gradient(${props.person?.getTopClothColor()} 80%, ${props.person?.getBottomClothColor()} 20%)`,
+    };
+    const bottomClothColor = {
+      backgroundColor: props.person?.getBottomClothColor(),
+    };
+    const shoesColor = { backgroundColor: props.person?.getShoesColor() };
     return {
       bodyStyle,
+      hairStyle,
+      skinStyle,
+      topClothColor,
+      bodyClothStyle,
+      bottomClothColor,
+      shoesColor,
     };
   },
 });
