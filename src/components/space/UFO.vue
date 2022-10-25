@@ -43,10 +43,10 @@
     }
     100% { 
       animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
-      transform: scale( 1 ) rotate(15deg) translateX(-150px) translateY(300px);
+      transform: scale( 1 ) rotate(15deg) translateX(-150px) translateY(400px);
     }
   });
-  .animation(movement 2s forwards cubic-bezier(0.02, 0.01, 0.21, 1));
+  .animation(movement 2s forwards cubic-bezier(0.02, 0.04, 0.21, 1));
   .aa;
   @media all and (max-width: 768px) and (orientation: landscape) {
     margin-top: -50px;
