@@ -24,11 +24,11 @@
 .ufo-contain {
   width: 150px;
   height: 50px;
-  margin-top: -70px;
+  margin-top: -100px;
   margin-left: 60%;
   transform: rotate(15deg);
   position: absolute;
-  top: 20%;
+  top: -20%;
   left: 50%;
   .keyframes(stray;{
 		0% { top: 49.5%; left: 50.5%; }
@@ -43,7 +43,7 @@
     }
     100% { 
       animation-timing-function: cubic-bezier(0.3, 0.27, 0.07, 1.64);
-      transform: scale( 1 ) rotate(15deg) translateX(-150px) translateY(200px);
+      transform: scale( 1 ) rotate(15deg) translateX(-150px) translateY(300px);
     }
   });
   .animation(movement 2s forwards cubic-bezier(0.02, 0.01, 0.21, 1));

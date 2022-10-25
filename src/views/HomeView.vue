@@ -5,6 +5,7 @@
       <text x="300" y="40%">외계인</text>
       <text x="40" y="90%">지구에 온걸 환영해</text>
     </svg>
+    <img class="earth-img" src="../assets/earth_img.png" />
     <UFO></UFO>
   </div>
 </template>
@@ -21,6 +22,13 @@ export default defineComponent({
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+.earth-img {
+  position: absolute;
+  top: -100px;
+  left: 900px;
+  z-index: -9999;
+}
 
 .home-view {
   position: relative;
