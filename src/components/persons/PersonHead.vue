@@ -3,7 +3,23 @@
     <div class="person__hair">
       <div class="person__hair--main" :style="hairStyle"></div>
       <div class="person__hair--left" :style="hairStyle"></div>
+      <div
+        v-if="genderChecker"
+        class="person__hair--left__long"
+        :style="hairStyle"
+      >
+        <div class="person__hair--left__long--top-part"></div>
+        <div class="person__hair--left__long--bottom-part"></div>
+      </div>
       <div class="person__hair--right" :style="hairStyle"></div>
+      <div
+        v-if="genderChecker"
+        class="person__hair--right__long"
+        :style="hairStyle"
+      >
+        <div class="person__hair--right__long--top-part"></div>
+        <div class="person__hair--right__long--bottom-part"></div>
+      </div>
     </div>
     <div class="person__face" :style="personStyle">
       <div class="person__eyes--left"></div>
@@ -13,11 +29,23 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 export default defineComponent({
   props: {
     hairStyle: Object,
     personStyle: Object,
+    gender: String,
+  },
+  setup(props) {
+    let genderChecker = false;
+    onMounted(() => {
+      if (props.gender === "여") {
+        genderChecker = true;
+      }
+    });
+    return {
+      genderChecker,
+    };
   },
 });
 </script>

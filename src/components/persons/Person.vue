@@ -1,6 +1,10 @@
 <template>
   <div :class="'the_person'">
-    <PersonFace :personStyle="personStyle" :hairStyle="hairStyle"></PersonFace>
+    <PersonFace
+      :personStyle="personStyle"
+      :hairStyle="hairStyle"
+      :gender="gender"
+    ></PersonFace>
     <div class="person__name">{{ person?.getName() }}</div>
     <div class="person__age">{{ person?.getAge() }}</div>
     <div class="person__controller">
@@ -22,6 +26,7 @@ export default defineComponent({
     person: person,
   },
   setup(props) {
+    const gender = props.person?.getGender();
     return {
       personStyle: {
         backgroundColor: props.person?.getPersonalColor(),
@@ -29,6 +34,7 @@ export default defineComponent({
       hairStyle: {
         backgroundColor: props.person?.getHairColor(),
       },
+      gender,
     };
   },
 });
