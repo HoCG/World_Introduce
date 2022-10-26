@@ -41,7 +41,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .the_person {
-  width: 300px;
+  width: 180px;
   margin: 50px;
 }
 </style>

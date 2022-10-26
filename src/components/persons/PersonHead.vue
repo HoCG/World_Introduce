@@ -52,8 +52,8 @@ export default defineComponent({
 <style lang="scss">
 .person__head {
   position: relative;
-  width: 300px;
-  height: 350px;
+  width: 180px;
+  height: 210px;
   .person__hair {
     position: relative;
     border-radius: 40px 40px 0px 0px;
@@ -64,46 +64,46 @@ export default defineComponent({
     }
     &--left {
       position: absolute;
-      left: 150px;
-      width: 150px;
-      height: 110px;
+      left: 90px;
+      width: 90px;
+      height: 66px;
       border-radius: 0 0 0 110px;
     }
     &--right {
       position: absolute;
-      width: 200px;
-      height: 110px;
+      width: 120px;
+      height: 66px;
       border-radius: 0 0 110px 0;
     }
   }
   .person__eyes {
     &--left {
       z-index: 999;
-      top: 160px;
-      left: 50px;
-      width: 30px;
-      height: 30px;
+      top: 96px;
+      left: 30px;
+      width: 18px;
+      height: 18px;
       border-radius: 100%;
       position: absolute;
       background-color: black;
     }
     &--right {
       z-index: 999;
-      top: 160px;
-      right: 50px;
-      width: 30px;
-      height: 30px;
+      top: 96px;
+      right: 30px;
+      width: 18px;
+      height: 18px;
       border-radius: 100%;
       position: absolute;
       background-color: black;
     }
   }
   .person__mouth {
-    top: 300px;
-    left: 150px;
+    top: 180px;
+    left: 90px;
     transform: translate(-50%, -50%);
-    width: 100px;
-    height: 60px;
+    width: 60px;
+    height: 20px;
     border-radius: 0 0 100px 100px;
     position: absolute;
     background-color: red;
