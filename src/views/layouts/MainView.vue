@@ -46,9 +46,9 @@ let disabled = new Map();
 export default defineComponent({
   components: {
     HomeView,
-    PersonView,
     SeaView,
     LandView,
+    PersonView,
     PersonWalkView,
     MeetAlienAndPersonView,
     EarthView,
