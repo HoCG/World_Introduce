@@ -1,5 +1,6 @@
 <template>
   <div class="walk-space">
+    <img src="../assets/city_img.jpg" />
     <WalkPerson
       :person="person"
       v-for="[index, person] in personArr"
@@ -27,10 +28,13 @@ export default defineComponent({
 </script>
 <style scoped>
 .walk-space {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
   position: relative;
   background: #fff;
-  width: 700px;
-  height: 150px;
+  width: 2000px;
+  height: 800px;
   margin: 50px auto;
 }
 </style>
