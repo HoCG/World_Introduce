@@ -242,6 +242,7 @@ export default defineComponent({
             "https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/earthspec1k.jpg",
         },
       },
+      //test
       atmosphere: {
         size: 0.003,
         material: {
