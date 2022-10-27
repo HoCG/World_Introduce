@@ -25,7 +25,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, StyleValue } from "vue";
 export default defineComponent({
   props: {
     hairStyle: String,
@@ -34,14 +34,14 @@ export default defineComponent({
   },
   setup(props) {
     let genderChecker = false;
-    const hairColor = {
+    const hairColor: StyleValue = {
       backgroundColor: props.hairStyle,
     };
-    const leftLongHairColor = {
+    const leftLongHairColor: StyleValue = {
       borderBottom: `70px solid ${props.hairStyle}`,
       borderRight: `20px solid ${props.hairStyle}`,
     };
-    const rightLongHairColor = {
+    const rightLongHairColor: StyleValue = {
       borderBottom: `70px solid ${props.hairStyle}`,
       borderLeft: `20px solid ${props.hairStyle}`,
     };

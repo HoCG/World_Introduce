@@ -1,21 +1,25 @@
 <template>
   <div class="walk-space">
     <img src="../assets/city_img.jpg" />
-    <WalkPerson
-      :person="person"
-      v-for="[index, person] in personArr"
-      :key="index"
-    ></WalkPerson>
+    <template v-for="[index, person] in personArr" :key="index">
+      <WalkMan
+        v-if="person.getGender() === '남' ? true : false"
+        :person="person"
+      ></WalkMan>
+      <WalkWoman v-else :person="person"></WalkWoman>
+    </template>
   </div>
 </template>
 <script lang="ts">
 import { personStore } from "../stores/personStore";
-import WalkPerson from "@/components/persons/WalkPerson.vue";
+import WalkMan from "@/components/persons/WalkMan.vue";
+import WalkWoman from "@/components/persons/WalkWoman.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
-    WalkPerson,
+    WalkMan,
+    WalkWoman,
   },
   setup() {
     const usePersonStore = personStore();

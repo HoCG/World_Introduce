@@ -25,7 +25,7 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, StyleValue } from "vue";
 import person from "@/stores/person";
 
 export default defineComponent({
@@ -40,16 +40,24 @@ export default defineComponent({
     } else {
       bodyStyle.animation = `ManBodyScale2 ${props.person?.getSpeed()}s infinite linear`;
     }
-    const hairStyle = { backgroundColor: props.person?.getHairColor() };
-    const skinStyle = { backgroundColor: props.person?.getPersonalColor() };
-    const topClothColor = { backgroundColor: props.person?.getTopClothColor() };
-    const bodyClothStyle = {
+    const hairStyle: StyleValue = {
+      backgroundColor: props.person?.getHairColor(),
+    };
+    const skinStyle: StyleValue = {
+      backgroundColor: props.person?.getPersonalColor(),
+    };
+    const topClothColor: StyleValue = {
+      backgroundColor: props.person?.getTopClothColor(),
+    };
+    const bodyClothStyle: StyleValue = {
       background: `linear-gradient(${props.person?.getTopClothColor()} 80%, ${props.person?.getBottomClothColor()} 20%)`,
     };
-    const bottomClothColor = {
+    const bottomClothColor: StyleValue = {
       backgroundColor: props.person?.getBottomClothColor(),
     };
-    const shoesColor = { backgroundColor: props.person?.getShoesColor() };
+    const shoesColor: StyleValue = {
+      backgroundColor: props.person?.getShoesColor(),
+    };
     return {
       bodyStyle,
       hairStyle,
