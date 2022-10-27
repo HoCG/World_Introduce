@@ -27,13 +27,12 @@ export default defineComponent({
   },
   setup(props) {
     const gender = props.person?.getGender();
+    const hairStyle = props.person?.getHairColor();
     return {
       personStyle: {
         backgroundColor: props.person?.getPersonalColor(),
       },
-      hairStyle: {
-        backgroundColor: props.person?.getHairColor(),
-      },
+      hairStyle,
       gender,
     };
   },

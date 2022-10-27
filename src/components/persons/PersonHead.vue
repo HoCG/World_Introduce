@@ -1,24 +1,20 @@
 <template>
   <div class="person__head">
     <div class="person__hair">
-      <div class="person__hair--main" :style="hairStyle"></div>
-      <div class="person__hair--left" :style="hairStyle"></div>
-      <div
-        v-if="genderChecker"
-        class="person__hair--left__long"
-        :style="hairStyle"
-      >
-        <div class="person__hair--left__long--top-part"></div>
-        <div class="person__hair--left__long--bottom-part"></div>
+      <div class="person__hair--main" :style="hairColor"></div>
+      <div class="person__hair--left" :style="hairColor"></div>
+      <div v-if="genderChecker" class="person__hair--left__long">
+        <div
+          class="person__hair--left__long--top-part"
+          :style="leftLongHairColor"
+        ></div>
       </div>
-      <div class="person__hair--right" :style="hairStyle"></div>
-      <div
-        v-if="genderChecker"
-        class="person__hair--right__long"
-        :style="hairStyle"
-      >
-        <div class="person__hair--right__long--top-part"></div>
-        <div class="person__hair--right__long--bottom-part"></div>
+      <div class="person__hair--right" :style="hairColor"></div>
+      <div v-if="genderChecker" class="person__hair--right__long">
+        <div
+          class="person__hair--right__long--top-part"
+          :style="rightLongHairColor"
+        ></div>
       </div>
     </div>
     <div class="person__face" :style="personStyle">
@@ -29,22 +25,34 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 export default defineComponent({
   props: {
-    hairStyle: Object,
+    hairStyle: String,
     personStyle: Object,
     gender: String,
   },
   setup(props) {
     let genderChecker = false;
-    onMounted(() => {
-      if (props.gender === "여") {
-        genderChecker = true;
-      }
-    });
+    const hairColor = {
+      backgroundColor: props.hairStyle,
+    };
+    const leftLongHairColor = {
+      borderBottom: `70px solid ${props.hairStyle}`,
+      borderRight: `20px solid ${props.hairStyle}`,
+    };
+    const rightLongHairColor = {
+      borderBottom: `70px solid ${props.hairStyle}`,
+      borderLeft: `20px solid ${props.hairStyle}`,
+    };
+    if (props.gender === "여") {
+      genderChecker = true;
+    }
     return {
       genderChecker,
+      hairColor,
+      leftLongHairColor,
+      rightLongHairColor,
     };
   },
 });
@@ -68,12 +76,38 @@ export default defineComponent({
       width: 90px;
       height: 66px;
       border-radius: 0 0 0 110px;
+      &__long {
+        &--top-part {
+          left: -39px;
+          top: 13px;
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-bottom: 70px solid;
+          border-top: 70px solid transparent;
+          border-left: 20px solid transparent;
+          border-right: 20px solid;
+        }
+      }
     }
     &--right {
       position: absolute;
       width: 120px;
       height: 66px;
       border-radius: 0 0 110px 0;
+      &__long {
+        &--top-part {
+          left: 179px;
+          top: 13px;
+          position: absolute;
+          width: 0;
+          height: 0;
+          border-bottom: 70px solid;
+          border-top: 70px solid transparent;
+          border-left: 20px solid;
+          border-right: 20px solid transparent;
+        }
+      }
     }
   }
   .person__eyes {
