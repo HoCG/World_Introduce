@@ -1,3 +1,10 @@
+.woman-body {
+  animation: womanBody 6s infinite linear;
+  top: 220px;
+  left: 0;
+  position: absolute;
+}
+
 .woman-eye {
   width: 6px;
   height: 6px;
@@ -163,12 +170,6 @@
   to {
     -webkit-transform: rotate(-35deg);
   }
-}
-.woman-body {
-  animation: womanBody 6s infinite linear;
-  top: 300px;
-  left: 0;
-  position: absolute;
 }
 @keyframes womanBody {
   0% {

@@ -1,13 +1,19 @@
 <template>
-  <div class="walk-space">
-    <img src="../assets/city_img.jpg" />
-    <template v-for="[index, person] in personArr" :key="index">
-      <WalkMan
-        v-if="person.getGender() === '남' ? true : false"
-        :person="person"
-      ></WalkMan>
-      <WalkWoman v-else :person="person"></WalkWoman>
-    </template>
+  <div class="walk-container">
+    <div class="walk-space-text">자! 이제 그들이 움직이는걸 봐봐!</div>
+    <div class="walk-space-text">
+      이렇게 도시속에서 서로 교감하며 살아가고있어~!
+    </div>
+    <div class="walk-space">
+      <img src="../assets/city_img.jpg" />
+      <template v-for="[index, person] in personArr" :key="index">
+        <WalkMan
+          v-if="person.getGender() === '남' ? true : false"
+          :person="person"
+        ></WalkMan>
+        <WalkWoman v-else :person="person"></WalkWoman>
+      </template>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -30,7 +36,7 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
+<style lang="scss">
 .walk-space {
   display: flex;
   justify-content: center;
@@ -38,7 +44,11 @@ export default defineComponent({
   position: relative;
   background: #fff;
   width: 2000px;
-  height: 800px;
+  height: 700px;
   margin: 50px auto;
+  &-text {
+    font-weight: 600;
+    font-size: larger;
+  }
 }
 </style>

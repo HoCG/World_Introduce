@@ -1,7 +1,11 @@
 <template>
   <div class="person-view">
-    <div>지구에는 수많은 사람들이 함께살고있어 보이지?</div>
-    <div>사람들은 서로다른 모습, 서로다른 생각을 하며 살고있지</div>
+    <div class="person-view-text">
+      지구에는 수많은 사람들이 함께살고있어 보이지?
+    </div>
+    <div class="person-view-text">
+      사람들은 서로다른 모습, 서로다른 생각을 하며 살고있지
+    </div>
     <div class="person-box">
       <Person
         v-for="[index, person] in personArr"
@@ -44,11 +48,11 @@ export default defineComponent({
         getPerson.shoesColor,
         scaleArr[randomScaleNumber],
         rand(5, 9)
-      );
+      ) as person;
       usePersonStore.addPerson(newPerson);
       ++privateNum;
     }
-    const personArr = usePersonStore.personArr;
+    const personArr: Map<number, person> = usePersonStore.personArr;
     return {
       personArr,
     };
@@ -62,6 +66,10 @@ export default defineComponent({
   justify-content: center;
   flex-direction: column;
   align-content: center;
+  &-text {
+    font-weight: 600;
+    font-size: larger;
+  }
   .person-box {
     display: flex;
     justify-content: center;

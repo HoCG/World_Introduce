@@ -1,3 +1,9 @@
+.man-body {
+  top: 220px;
+  left: 0;
+  position: absolute;
+}
+
 .man-eye {
   width: 6px;
   height: 6px;
@@ -125,11 +131,6 @@
   to {
     -webkit-transform: rotate(-35deg);
   }
-}
-.man-body {
-  top: 300px;
-  left: 0;
-  position: absolute;
 }
 @keyframes ManBodyScale1 {
   0% {
