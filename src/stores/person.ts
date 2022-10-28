@@ -1,18 +1,16 @@
 class person implements personInterFace {
   constructor(
-    private _id: number,
-    private _name: string,
-    private _gender: string,
-    private _age: number,
-    private _personalColor: string,
-    private _hairColor: string,
-    private _topClothColor: string,
-    private _bottomClothColor: string,
-    private _shoesColor: string,
-    private _scaleNumber: number,
-    private _speed: number
+    public _name: string,
+    public _gender: string,
+    public _age: number,
+    public _personalColor: string,
+    public _hairColor: string,
+    public _topClothColor: string,
+    public _bottomClothColor: string,
+    public _shoesColor: string,
+    public _scaleNumber: number,
+    public _speed: number
   ) {
-    this._id = _id;
     this._name = _name;
     this._gender = _gender;
     this._age = _age;
@@ -23,12 +21,6 @@ class person implements personInterFace {
     this._shoesColor = _shoesColor;
     this._scaleNumber = _scaleNumber;
     this._speed = _speed;
-  }
-  setId(id: number): void {
-    this._id = id;
-  }
-  getId(): number {
-    return this._id;
   }
   setName(name: string): void {
     this._name = name;

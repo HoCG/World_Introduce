@@ -1,6 +1,4 @@
 interface personInterFace {
-  setId(id: number): void;
-  getId(): number;
   setName(name: string): void;
   getName(): string;
   setGender(gender: string): void;

@@ -13,31 +13,43 @@
         :person="person"
       ></Person>
     </div>
+    <div class="person-add-btn" @click="controlDialog()">사람추가!</div>
+    <PersonDialog
+      @closeDialog="closeDialog"
+      v-if="dialog === true"
+    ></PersonDialog>
   </div>
 </template>
 <script lang="ts">
 import Person from "@/components/persons/Person.vue";
+import PersonDialog from "@/components/persons/PersonDialog.vue";
 import { personStore } from "../stores/personStore";
 import data from "../assets/data.json";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import person from "@/stores/person";
 
 export default defineComponent({
   name: "PersonView",
   components: {
     Person,
+    PersonDialog,
   },
   setup() {
+    let dialog = ref(false);
+    const usePersonStore = personStore();
+    const scaleArr = [-1, 1];
+    const controlDialog = () => {
+      dialog.value = true;
+    };
+    const closeDialog = () => {
+      dialog.value = false;
+    };
     const rand = (min: number, max: number): number => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
-    const usePersonStore = personStore();
-    const scaleArr = [-1, 1];
-    let privateNum = 0 as number;
     for (const getPerson of data.person) {
       const randomScaleNumber = rand(0, 1);
-      const newPerson = new person(
-        privateNum,
+      const personInfo = new person(
         getPerson.name,
         getPerson.gender,
         getPerson.age,
@@ -49,12 +61,14 @@ export default defineComponent({
         scaleArr[randomScaleNumber],
         rand(5, 9)
       ) as person;
-      usePersonStore.addPerson(newPerson);
-      ++privateNum;
+      usePersonStore.addPerson(personInfo as person);
     }
     const personArr: Map<number, person> = usePersonStore.personArr;
     return {
+      dialog,
       personArr,
+      controlDialog,
+      closeDialog,
     };
   },
 });
@@ -65,7 +79,7 @@ export default defineComponent({
   width: 100%;
   justify-content: center;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
   &-text {
     font-weight: 600;
     font-size: larger;
@@ -73,7 +87,20 @@ export default defineComponent({
   .person-box {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
   }
+}
+.person-add-btn {
+  width: 230px;
+  height: 70px;
+  border-radius: 30px;
+  font-size: larger;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: skyblue;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

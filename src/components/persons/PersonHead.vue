@@ -112,7 +112,7 @@ export default defineComponent({
   }
   .person__eyes {
     &--left {
-      z-index: 999;
+      z-index: 2;
       top: 96px;
       left: 30px;
       width: 18px;
@@ -122,7 +122,7 @@ export default defineComponent({
       background-color: black;
     }
     &--right {
-      z-index: 999;
+      z-index: 2;
       top: 96px;
       right: 30px;
       width: 18px;
