@@ -13,6 +13,24 @@
             v-model="newPerson._name"
           />
         </div>
+        <div class="input-part">
+          <div class="input-part__label">나이:</div>
+          <input
+            class="input-part__push"
+            label="나이"
+            type="text"
+            v-model="newPerson._age"
+          />
+        </div>
+        <div class="input-part">
+          <div class="input-part__label">이름:</div>
+          <input
+            class="input-part__push"
+            label="이름"
+            type="text"
+            v-model="newPerson._name"
+          />
+        </div>
       </div>
       <div class="dialog-control-area">
         <div class="dialog-save-btn" @click="savePerson()">저장</div>
