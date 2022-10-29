@@ -73,6 +73,17 @@
     }
   }
 }
+.color-dialog-btn {
+  background-color: purple;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
+}
 
 
 .close-btn {

@@ -1,24 +1,24 @@
 <template>
   <div
     className="color-element"
-    @click="{saveColor}"
-    style="{{backgroundColor:"
-    props.palletElement}}
-    </div>
+    @click="$emit('setColor', palletElement)"
+    :style="elementStyle"
+  ></div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 export default defineComponent({
-    props: {
-        
-    },
-    setup(props) {
-        const elementStyle = {
-            backgroundColor: props.pallet
-        }
-        return {
-
-        };
-    },
+  props: {
+    palletElement: String,
+  },
+  emits: ["setColor"],
+  setup(props) {
+    const elementStyle = {
+      backgroundColor: props.palletElement,
+    };
+    return {
+      elementStyle,
+    };
+  },
 });
 </script>

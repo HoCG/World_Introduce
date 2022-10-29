@@ -31,11 +31,17 @@
             v-model="newPerson._name"
           />
         </div>
+        <div class="color-dialog-btn" @click="openColorDialog">go</div>
       </div>
       <div class="dialog-control-area">
         <div class="dialog-save-btn" @click="savePerson()">저장</div>
         <div class="dialog-cancel-btn" @click="$emit('closeDialog')">취소</div>
       </div>
+      <ColorDialog
+        v-if="colorDialog"
+        :thisColor="thisColor"
+        @closeColorDialog="closeColorDialog"
+      ></ColorDialog>
     </div>
   </div>
 </template>
@@ -43,20 +49,36 @@
 import { defineComponent, ref } from "vue";
 import person from "@/stores/person";
 import { personStore } from "@/stores/personStore";
+import ColorDialog from "../colorDialogs/ColorDialog.vue";
 
 export default defineComponent({
+  components: {
+    ColorDialog,
+  },
   emits: ["closeDialog"],
   setup(_, { emit }) {
     //const emit = defineEmits(["closeDialog"]);
+    let thisColor = ref("");
+    let colorDialog = ref(false);
     const usePersonStore = personStore();
     const newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
     const savePerson = () => {
       emit("closeDialog");
       usePersonStore.addPerson(newPerson.value as person);
     };
+    const closeColorDialog = () => {
+      colorDialog.value = false;
+    };
+    const openColorDialog = () => {
+      colorDialog.value = true;
+    };
     return {
       newPerson,
       savePerson,
+      colorDialog,
+      thisColor,
+      closeColorDialog,
+      openColorDialog,
     };
   },
 });
