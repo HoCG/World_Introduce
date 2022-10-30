@@ -1,6 +1,6 @@
 <template>
   <div
-    className="color-element"
+    class="color-element"
     @click="$emit('setColor', palletElement)"
     :style="elementStyle"
   ></div>

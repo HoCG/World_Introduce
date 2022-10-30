@@ -26,18 +26,19 @@ export default defineComponent({
   components: {
     ColorElement,
   },
-  setup(_, { emit }) {
+  props: {
+    thisColor: String,
+  },
+  setup(prop, { emit }) {
     let mainColor = ref("#000");
     const setColor = (color: string) => {
-      console.log("run");
       mainColor.value = color;
-      console.log(mainColor);
     };
     const colorDemoStyle = ref({
       backgroundColor: mainColor,
     });
     const chooseColor = () => {
-      emit("setColor", mainColor.value);
+      emit("changeColor", mainColor.value);
       emit("closeColorDialog");
     };
     const closeColorDialog = () => {

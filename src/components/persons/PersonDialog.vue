@@ -23,25 +23,23 @@
           />
         </div>
         <div class="input-part">
-          <div class="input-part__label">이름:</div>
-          <input
-            class="input-part__push"
-            label="이름"
-            type="text"
-            v-model="newPerson._name"
-          />
+          <div class="">
+            <div class="input-part__label">색상:</div>
+            <div class="color-element" :style="personalColorStyle"></div>
+          </div>
+          <div class="color-dialog-btn" @click="openColorDialog">go</div>
+          <ColorDialog
+            v-if="colorDialog"
+            :thisColor="newPerson._personalColor"
+            @changeColor="changePersonalColor"
+            @closeColorDialog="closeColorDialog"
+          ></ColorDialog>
         </div>
-        <div class="color-dialog-btn" @click="openColorDialog">go</div>
       </div>
       <div class="dialog-control-area">
         <div class="dialog-save-btn" @click="savePerson()">저장</div>
         <div class="dialog-cancel-btn" @click="$emit('closeDialog')">취소</div>
       </div>
-      <ColorDialog
-        v-if="colorDialog"
-        :thisColor="thisColor"
-        @closeColorDialog="closeColorDialog"
-      ></ColorDialog>
     </div>
   </div>
 </template>
@@ -62,9 +60,15 @@ export default defineComponent({
     let colorDialog = ref(false);
     const usePersonStore = personStore();
     const newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
+    const personalColorStyle = ref({
+      backgroundColor: newPerson.value._personalColor,
+    });
     const savePerson = () => {
       emit("closeDialog");
       usePersonStore.addPerson(newPerson.value as person);
+    };
+    const changePersonalColor = (color: string) => {
+      newPerson.value._personalColor = color;
     };
     const closeColorDialog = () => {
       colorDialog.value = false;
@@ -77,8 +81,10 @@ export default defineComponent({
       savePerson,
       colorDialog,
       thisColor,
+      changePersonalColor,
       closeColorDialog,
       openColorDialog,
+      personalColorStyle,
     };
   },
 });
