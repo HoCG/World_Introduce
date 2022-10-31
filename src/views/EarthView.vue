@@ -56,7 +56,10 @@
           stroke="url(#sw-gradient)"
         ></path>
       </svg>
-      <h1>어때? 지구에 와보지않을래?</h1>
+      <div class="earth-text-box">
+        <h1 class="earth-text">어때? 지구에</h1>
+        <h1 class="earth-text">와보지 않을래?</h1>
+      </div>
     </div>
     <Earth></Earth>
   </div>
@@ -70,7 +73,7 @@ export default defineComponent({
   components: { Earth },
 });
 </script>
-<style>
+<style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 .earth-view {
   display: flex;
@@ -111,7 +114,7 @@ export default defineComponent({
     transform: rotate(360deg);
   }
 }
-h1 {
+.earth-text-box {
   position: absolute;
   width: fit-content;
   height: fit-content;
@@ -120,14 +123,16 @@ h1 {
   top: 0;
   bottom: 0;
   margin: auto;
-  font-family: "Poppins", sans-serif;
-  text-transform: uppercase;
-  font-weight: 900;
-  color: white;
-  letter-spacing: 0.5em;
-  font-size: 4vw;
-  animation: text 1s infinite;
-  mix-blend-mode: screen;
+  .earth-text {
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 0.5em;
+    font-size: 4vw;
+    animation: text 1s infinite;
+    mix-blend-mode: screen;
+  }
 }
 @keyframes text {
   0% {
