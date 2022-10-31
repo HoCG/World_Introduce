@@ -26,7 +26,7 @@ export default defineComponent({
     let orbitControls = new OrbitControls(camera);
 
     // Lights
-    let spotLight = new THREE.SpotLight(0xffffff, 1, 0, 10, 2);
+    let spotLight = new THREE.SpotLight(0xffffff, 1, 0, 100, 2);
 
     // Planet Proto
     let planetProto = {
