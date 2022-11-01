@@ -28,7 +28,7 @@ export default defineComponent({
     let frequency = 11;
     let amplitude = 0.04;
     let pointCount = 100;
-    let svgName = "circle";
+    let svgName = "bow";
     const loader = new GLTFLoader();
     const renderer = new THREE.WebGLRenderer();
     const scene = new THREE.Scene();
@@ -65,7 +65,7 @@ export default defineComponent({
       renderer.setSize(1200, 600);
       container.appendChild(renderer.domElement);
       //
-      camera.position.set(20, 45, 200);
+      camera.position.set(70, 90, 350);
       const sun = new THREE.Vector3();
       // Water
 
@@ -144,9 +144,9 @@ export default defineComponent({
       const shape = transformSVGPath(path);
       const points = shape.getPoints(pointCount).map((point) => {
         let v = new THREE.Vector3(
-          point.x * 10 - width / 2,
-          0,
-          point.y * 2 - height
+          point.x * 15 - width * 4,
+          20,
+          point.y * 3 - height
         );
         v = v.multiplyScalar(scale);
         return v;
