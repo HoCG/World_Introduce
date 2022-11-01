@@ -45,6 +45,7 @@ export default defineComponent({
   background: #fff;
   width: 2000px;
   height: 700px;
+  border-radius: 30px;
   margin: 50px auto;
   &-text {
     font-weight: 600;

@@ -14,6 +14,7 @@
     "pinia": "^2.0.22",
     "roboto-fontface": "*",
     "three-orbitcontrols-ts": "^0.1.2",
+    "three-stdlib": "^2.17.3",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "webfontloader": "^1.0.0"
