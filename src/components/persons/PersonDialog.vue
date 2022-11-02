@@ -76,7 +76,7 @@ export default defineComponent({
     //const emit = defineEmits(["closeDialog"]);
     const usePersonStore = personStore();
     const scaleArr = [-1, 1];
-    const newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
+    let newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
     const rand = (min: number, max: number): number => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
@@ -86,6 +86,7 @@ export default defineComponent({
       newPerson.value._speed = rand(5, 9);
       emit("closeDialog");
       usePersonStore.addPerson(newPerson.value as person);
+      newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
     };
     const changePersonalColor = (color: string) => {
       newPerson.value._personalColor = color;
