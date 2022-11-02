@@ -29,7 +29,7 @@ export default defineComponent({
   props: {
     thisColor: String,
   },
-  setup(prop, { emit }) {
+  setup(_, { emit }) {
     let mainColor = ref("#000");
     const setColor = (color: string) => {
       mainColor.value = color;

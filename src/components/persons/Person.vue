@@ -6,7 +6,7 @@
       :gender="gender"
     ></PersonFace>
     <div class="person__name">{{ person?.getName() }}</div>
-    <div class="person__age">{{ person?.getAge() }}</div>
+    <div class="person__age">{{ person?.getAge() }}살</div>
     <div class="person__controller">
       <div class="person__controller--update"></div>
       <div class="person__controller--delete"></div>
@@ -42,5 +42,9 @@ export default defineComponent({
 .the_person {
   width: 180px;
   margin: 50px;
+  .person__name {
+    font-size: larger;
+    font-weight: 800;
+  }
 }
 </style>

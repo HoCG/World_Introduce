@@ -22,19 +22,37 @@
             v-model="newPerson._age"
           />
         </div>
-        <div class="input-part">
-          <div class="">
-            <div class="input-part__label">색상:</div>
-            <div class="color-element" :style="personalColorStyle"></div>
-          </div>
-          <div class="color-dialog-btn" @click="openColorDialog">go</div>
-          <ColorDialog
-            v-if="colorDialog"
-            :thisColor="newPerson._personalColor"
-            @changeColor="changePersonalColor"
-            @closeColorDialog="closeColorDialog"
-          ></ColorDialog>
+        <div class="checkbox-part__gender">
+          <input type="checkbox" value="남" name="성별" @click="checkOnlyOne" />
+          남
+          <input type="checkbox" value="여" name="성별" @click="checkOnlyOne" />
+          여
         </div>
+        <ColorInputPart
+          :pickColor="newPerson._personalColor"
+          :pickColorText="'피부색:'"
+          @changeColor="changePersonalColor"
+        ></ColorInputPart>
+        <ColorInputPart
+          :pickColor="newPerson._hairColor"
+          :pickColorText="'머리색:'"
+          @changeColor="changeHairColor"
+        ></ColorInputPart>
+        <ColorInputPart
+          :pickColor="newPerson._topClothColor"
+          :pickColorText="'윗옷색:'"
+          @changeColor="changeTopClothColor"
+        ></ColorInputPart>
+        <ColorInputPart
+          :pickColor="newPerson._bottomClothColor"
+          :pickColorText="'바지색:'"
+          @changeColor="changeBottomClothColor"
+        ></ColorInputPart>
+        <ColorInputPart
+          :pickColor="newPerson._shoesColor"
+          :pickColorText="'신발색:'"
+          @changeColor="changeShoesColor"
+        ></ColorInputPart>
       </div>
       <div class="dialog-control-area">
         <div class="dialog-save-btn" @click="savePerson()">저장</div>
@@ -47,44 +65,65 @@
 import { defineComponent, ref } from "vue";
 import person from "@/stores/person";
 import { personStore } from "@/stores/personStore";
-import ColorDialog from "../colorDialogs/ColorDialog.vue";
+import ColorInputPart from "./ColorInputPart.vue";
 
 export default defineComponent({
   components: {
-    ColorDialog,
+    ColorInputPart,
   },
   emits: ["closeDialog"],
   setup(_, { emit }) {
     //const emit = defineEmits(["closeDialog"]);
-    let thisColor = ref("");
-    let colorDialog = ref(false);
     const usePersonStore = personStore();
+    const scaleArr = [-1, 1];
     const newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
-    const personalColorStyle = ref({
-      backgroundColor: newPerson.value._personalColor,
-    });
+    const rand = (min: number, max: number): number => {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
     const savePerson = () => {
+      const randomScaleNumber = rand(0, 1);
+      newPerson.value._scaleNumber = scaleArr[randomScaleNumber];
+      newPerson.value._speed = rand(5, 9);
       emit("closeDialog");
       usePersonStore.addPerson(newPerson.value as person);
     };
     const changePersonalColor = (color: string) => {
       newPerson.value._personalColor = color;
     };
-    const closeColorDialog = () => {
-      colorDialog.value = false;
+    const changeHairColor = (color: string) => {
+      newPerson.value._hairColor = color;
     };
-    const openColorDialog = () => {
-      colorDialog.value = true;
+    const changeTopClothColor = (color: string) => {
+      newPerson.value._topClothColor = color;
+    };
+    const changeBottomClothColor = (color: string) => {
+      newPerson.value._bottomClothColor = color;
+    };
+    const changeShoesColor = (color: string) => {
+      newPerson.value._shoesColor = color;
+    };
+    const checkOnlyOne = (e: Event) => {
+      const checkboxes = document.getElementsByName(
+        "성별"
+      ) as unknown as HTMLInputElement[];
+
+      checkboxes.forEach((cb: HTMLInputElement) => {
+        cb.checked = false;
+      });
+      (e.target as any | HTMLInputElement).checked = true;
+      newPerson.value._gender = (e.target as any | HTMLInputElement).checked
+        ? (e.target as any | HTMLInputElement).value
+        : newPerson.value._gender;
     };
     return {
       newPerson,
       savePerson,
-      colorDialog,
-      thisColor,
       changePersonalColor,
-      closeColorDialog,
-      openColorDialog,
-      personalColorStyle,
+      changeHairColor,
+      changeTopClothColor,
+      changeBottomClothColor,
+      changeShoesColor,
+      checkOnlyOne,
     };
   },
 });
