@@ -25,13 +25,15 @@ export default defineComponent({
   setup() {
     let firstFish;
     let secondFish;
+    let thirdFish;
     let firstFlow;
     let secondFlow;
+    let thirdFlow;
     let frequency = 11;
     let amplitude = 0.04;
     let pointCount = 100;
     let svgName = "bow";
-    //let svgNameCircle = "circle";
+    let svgNameCircle = "circle";
     const loader = new GLTFLoader();
     const renderer = new THREE.WebGLRenderer();
     const scene = new THREE.Scene();
@@ -115,14 +117,19 @@ export default defineComponent({
 
       loader.load("https://assets.codepen.io/5946/fish_1.glb", function (gltf) {
         firstFish = gltf.scene;
-        firstFish.scale.set(8, 8, 8);
+        firstFish.scale.set(10, 10, 10);
         secondFish = gltf.scene;
-        secondFish.scale.set(8, 8, 8);
+        secondFish.scale.set(10, 10, 10);
+        thirdFish = gltf.scene;
+        thirdFish.scale.set(10, 10, 10);
         const svg = document.getElementById(svgName);
+        const circle = document.getElementById(svgNameCircle);
         const origFirstPoints = getFirstCenteredSVGPoints(svg, 0.025);
         const origSecondPoints = getSecondCenteredSVGPoints(svg, 0.025);
+        const origThirdPoints = getThirdCenteredSVGPoints(circle, 0.025);
         const firstFishPoints = getFishPointsFromPoints(origFirstPoints);
         const secondFishPoints = getFishPointsFromPoints(origSecondPoints);
+        const thirdFishPoints = getFishPointsFromPoints(origThirdPoints);
         const firstFishCurve = new THREE.CatmullRomCurve3(
           firstFishPoints,
           true
@@ -131,8 +138,13 @@ export default defineComponent({
           secondFishPoints,
           true
         );
+        const thirdFishCurve = new THREE.CatmullRomCurve3(
+          thirdFishPoints,
+          true
+        );
         followFisrtPoints(firstFishCurve);
         followSecondPoints(secondFishCurve);
+        followThirdPoints(thirdFishCurve);
         window.addEventListener("resize", onWindowResize, false);
         animate();
       });
@@ -149,6 +161,7 @@ export default defineComponent({
       requestAnimationFrame(animate);
       firstFlow.moveAlongCurve(0.001);
       secondFlow.moveAlongCurve(0.003);
+      thirdFlow.moveAlongCurve(0.003);
       render();
     };
     //svg내에 값들을 가지고와서 움직이는 포인트를 잡아준다.
@@ -186,6 +199,23 @@ export default defineComponent({
       });
       return points;
     };
+    const getThirdCenteredSVGPoints = (svg, scale) => {
+      const viewBox = svg.getAttribute("viewBox").split(" ");
+      const width = parseFloat(viewBox[2]);
+      const height = parseFloat(viewBox[3]);
+      const path = svg.querySelector("path").getAttribute("d");
+      const shape = transformSVGPath(path);
+      const points = shape.getPoints(pointCount).map((point) => {
+        let v = new THREE.Vector3(
+          height - point.y * 3,
+          20,
+          width * 13 - point.x * 15
+        );
+        v = v.multiplyScalar(scale);
+        return v;
+      });
+      return points;
+    };
     //단독적 로직.
     const getFishPointsFromPoints = (points) => {
       const fishPoints = [];
@@ -213,6 +243,11 @@ export default defineComponent({
       secondFlow = new Flow(secondFish);
       secondFlow.updateCurve(0, curve);
       scene.add(secondFlow.object3D);
+    };
+    const followThirdPoints = (curve) => {
+      thirdFlow = new Flow(thirdFish);
+      thirdFlow.updateCurve(0, curve);
+      scene.add(thirdFlow.object3D);
     };
     const render = () => {
       water.material.uniforms["time"].value += 1.0 / 60.0;

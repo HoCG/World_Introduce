@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="left-hand" :style="skinStyle">
-        <div class="left-cloth"></div>
+        <div class="left-cloth" :style="topClothColor"></div>
       </div>
       <div class="middle-part" :style="topClothColor">
         <div class="middle-part__skirt" :style="bottomClothColor">
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="right-hand" :style="skinStyle">
-        <div class="right-cloth"></div>
+        <div class="right-cloth" :style="topClothColor"></div>
       </div>
     </div>
     <div class="left-leg" :style="skinStyle">
