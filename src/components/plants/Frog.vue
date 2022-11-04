@@ -28,26 +28,26 @@
   left: 0;
   right: 0;
   top: 100px;
-}
-.frog-face:before {
-  content: "";
-  position: absolute;
-  height: 60px;
-  width: 120px;
-  background-color: #c1d218;
-  border-radius: 0 0 60px 60px;
-  bottom: 0;
-  left: 20px;
-}
-.frog-face:after {
-  content: "";
-  position: absolute;
-  width: 140px;
-  height: 8px;
-  background-color: #477a26;
-  border-radius: 5px;
-  left: 10px;
-  top: 55px;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 60px;
+    width: 120px;
+    background-color: #c1d218;
+    border-radius: 0 0 60px 60px;
+    bottom: 0;
+    left: 20px;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 8px;
+    background-color: #477a26;
+    border-radius: 5px;
+    left: 10px;
+    top: 55px;
+  }
 }
 .frog-eyes,
 .frog-eyes:before {
