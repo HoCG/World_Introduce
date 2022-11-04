@@ -9,7 +9,7 @@
     </div>
   </div>
 </template>
-<style>
+<style lang="scss">
 .frog-container {
   height: 400px;
   width: 400px;

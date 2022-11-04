@@ -1,25 +1,25 @@
 <template>
   <div class="lion">
-    <span class="mane">
-      <span class="head">
-        <span class="eye left"></span>
-        <span class="eye right"></span>
-        <span class="nose"></span>
-      </span>
-      <span class="ear left">
-        <span class="inner"></span>
-      </span>
-      <span class="ear right">
-        <span class="inner"></span>
-      </span>
-    </span>
-    <span class="body">
-      <span class="paw left"></span>
-      <span class="paw right"></span>
-      <span class="leg left"></span>
-      <span class="leg right"></span>
-    </span>
-    <span class="tail">s</span>
+    <div class="center-lion lion-body"></div>
+    <div class="center-lion lion-head"></div>
+    <div class="center-lion lion-head-color"></div>
+    <div class="center-lion lion-face">
+      <div class="center-lion lion-face-nose"></div>
+      <div class="center-lion lion-nose-thingy-under"></div>
+      <div class="center-lion lion-mouth"></div>
+      <div class="lion-cheek lion-cheek-left"></div>
+      <div class="lion-cheek lion-cheek-right"></div>
+    </div>
+    <div class="center-lion lion-paw lion-paw-left">
+      <div class="lion-nail lion-nail-1"></div>
+      <div class="lion-nail lion-nail-2"></div>
+      <div class="lion-nail lion-nail-3"></div>
+    </div>
+    <div class="center-lion lion-paw lion-paw-right">
+      <div class="lion-nail lion-nail-4"></div>
+      <div class="lion-nail lion-nail-2"></div>
+      <div class="lion-nail lion-nail-5"></div>
+    </div>
   </div>
 </template>
 
@@ -28,106 +28,233 @@ export default {};
 </script>
 
 <style lang="scss">
-@import compass // ============== { ('_') } ==============
-  // Let's make a lion with CSS and then animate him. Why? BECAUSE REASONS.
-  // I also thought I'd use Mr.Lion to show a few examples of why I love using Sass to write CSS (http://sass-lang.com/)
-  // I'm also using Compass (http://compass-style.org/) which goes along with Sass really well and saves you from writing all of the required vendor prefixes out. For example, instead of writing all the prefixes for border-radius you can just do @include border-radius(amount). Yay!
-  @import compass/reset @import compass/css3
-    // ======================================
-  // Sass rocks because VARIABLES { ('_') }
-  // ======================================
-  // Let's define some colours for Mr. Lion. Sass is AWESOME for this, since you can re-use these colour names all over and not have to change them in a bunch of places if Mr.Lion decides he wants to dye his fur pink one day.
-  $tan: #f5cd88 $mane: #ed8641 $dkbrown: #604f31
-    // You can also use variables for other things, anything that you might want to repeat a lot or refer to in a way that's easy to see why you're using it. I'll use one for a common border style.
-  $border-oval: 50% // ============================================
-  // Sass rocks because COLOUR FUNCTIONS { ('_') }
-  // ============================================
-  // Mr. Lion also has a few highlights and shaded areas. Sass has this very cool inbuilt function to lighten or darken colours to create new colours based on our existing colour variables. Shiny.
-  $tan-highlight: lighten($tan, 15%) $mane-shade: darken($mane, 5%)
-    // ===================================
-  // Sass rocks because MIXINS { ('_') }
-  // ===================================
-  // If we find ourselves repeating a bunch of properties on multiple elements, we can put these in a mixin to save ourselves repetition when using them over and over. Mixins can also be passed arguments if we need to customise them further!
-  // For example, a good way to center absolutely positioned elements regardless of their width is to give them the below properties which we'll reuse as mixins.
-  @mixin center-element-x left: 50% @include transform(translateX(-50%)) @mixin
-    center-element left: 50% top: 50% @include
-    transform(translateX(-50%) translateY(-50%))
-    // ===================================
-  // Sass rocks because NESTING { ('_') }
-  // ===================================
-  // We can avoid so much of the usual repetition we get with writing CSS. W00t.
-  body font-family: "Lato",
-  sans-serif padding: 50px 0 .lion width: 250px height: 300px position: relative
-    margin: 0 auto span position: absolute .head width: 140px height: 105px top:
-    50px z-index: 2 background-color: $tan @include border-radius($border-oval)
-    @include center-element-x .eye width: 15px height: 22px top: 30px z-index: 2
-    background-color: $dkbrown border: solid 10px $tan-highlight @include
-    border-radius($border-oval)
-    // &.left in Sass is the equivalent of doing .eye.left to chain classes in CSS. Less to write! Yay!
-  &.left left: 10px &.right right: 10px -webkit-animation: blink 8s infinite .nose
-    width: 18px height: 12px top: 70px z-index: 2 background-color: $dkbrown @include
-    border-radius($border-oval) @include center-element-x .mane width: 219px height:
-    180px top: 0 z-index: 1 background-color: $mane @include border-radius(
-      $border-oval
-    ) @include center-element-x -webkit-animation: head-tilt 6s infinite
-    //Bottom of mane
-  &: before content: "" display: block position: absolute width: 0 height: 0
-    bottom: -54px left: 60px color: $mane // You can also indent within properties in Sass to make things like
-  // border sides easier to write!
-  border: 50px solid transparent top: 100px solid $mane bottom: 0 @include transform(
-      scaleX(1.9)
-    ) //Mane shading
-  &: after content: "" display: block position: absolute width: 140px height: 105px
-    bottom: 15px left: 40px background-color: $mane-shade @include border-radius(
-      $border-oval
-    ) .ear // You can use variables within selectors too, where you might find yourself
-  // repeating a value multiple times.
-  $ear: 60px width: $ear height: $ear top: 18px z-index: 2 background-color: $tan
-    @include border-radius($ear) &.left left: -15px &: before left: 60px
-    @include transform(scaleX(1.5) rotate(-20deg)) &.right right: -15px &: before
-    right: 120px top: -35px @include transform(scaleX(1.5) rotate(20deg)) .inner
-    // Another super-useful thing that Sass can do is calculations! :D
-  // To make sure that Mr. Lion's inner ear always stays in proportion
-  // with his outer ear, we could do this:
-  $inner-ear: $ear * 0.66 width: $inner-ear height: $inner-ear background-color:
-    $tan-highlight @include border-radius($inner-ear) @include center-element
-    // Mane fluff
-  &: before content: "" position: absolute width: 0 height: 0 top: -30px color: $mane
-    border: 15px solid transparent bottom: 30px solid $mane top: 0 @include transform(
-      scaleX(1.5)
-    ) .body width: 120px height: 260px top: 30px background-color: $tan @include
-    border-radius(40px) @include center-element-x // Belly
-  &: after content: "" position: absolute width: 80px height: 200px left: 20px top:
-    40px background-color: $tan-highlight @include border-radius(40px) .tail font-size:
-    150px right: 0 top: 160px color: $tan @include transform(rotate(20deg)) -webkit-animation:
-    sway 2s linear alternate infinite -webkit-transform-origin: 20px 80px &: after
-    content: "w" position: absolute top: 49px left: 43px font: size: 40px weight:
-    700 color: $mane @include transform(rotate(110deg)) .leg width: 50px height:
-    100px bottom: -30px z-index: -1 background-color: $tan @include border-radius(
-      15px
-    ) &.left left: 0 &.right right: 0 &: after content: "m" display: block position:
-    absolute font-size: 30px bottom: -3px color: $tan-highlight @include
-    center-element-x .paw width: 60px height: 35px top: 133px background-color:
-    $tan @include border-radius(15px) &.left left: -35px &: after left: 5px &.right
-    right: -35px &: after right: 5px -webkit-animation: wave 0.5s 5s linear 3 //inner paw
-  &: after $paw: 20px content: "" display: block position: absolute top: 7px width:
-    $paw height: $paw background-color: $tan-highlight @include border-radius(
-      $paw
-    ) // ============================================
-  // Animations for Mr. Lion { ('_') }
-  // ============================================
-  @-webkit-keyframes sway from @include transform(rotate(20deg)) to @include transform(
-      rotate(40deg)
-    ) @-webkit-keyframes head-tilt 0% @include transform(
-      translateX(-50%) rotate(0deg)
-    ) 50% @include transform(translateX(-50%) rotate(-5deg)) 0% @include transform(
-      translateX(-50%) rotate(0deg)
-    ) @-webkit-keyframes blink 0% @include transform(scaleY(1)) 50% @include transform(
-      scaleY(1)
-    ) 51% @include transform(scaleY(0.1)) 52% @include transform(scaleY(1)) 100%
-    @include transform(scaleY(1)) @-webkit-keyframes wave 0% @include transform(
-      rotate(0deg)
-    ) 50% @include transform(rotate(-30deg)) 100% @include transform(
-      rotate(0deg)
-    );
+.center-lion {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin: auto;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.lion {
+  top: 90px;
+  position: absolute;
+  left: 40px;
+}
+
+.lion-face {
+  width: 110px;
+  height: 90px;
+  left: 13px;
+  border-radius: 5%;
+  background-color: #be924d;
+  &-nose {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid black;
+    border-radius: 50%;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+    top: 37px;
+    width: 12px;
+    height: 25px;
+    -webkit-transform: rotatex(180deg);
+    transform: rotatex(180deg);
+    transform-origin: top;
+    animation: blink 3s infinite ease-out;
+  }
+  &::before {
+    left: 15px;
+  }
+  &::after {
+    right: 15px;
+  }
+}
+
+.lion-nail {
+  width: 3px;
+  height: 20px;
+  bottom: 0;
+  position: absolute;
+  background-color: #765117;
+  &-1 {
+    left: 10px;
+  }
+  &-2 {
+    left: 20px;
+  }
+  &-3 {
+    left: 30px;
+    height: 16px;
+  }
+  &-4 {
+    left: 10px;
+    height: 16px;
+  }
+  &-5 {
+    left: 30px;
+  }
+}
+
+.lion-nose-thingy-under {
+  width: 3px;
+  top: 50px;
+  height: 23px;
+  background-color: black;
+}
+
+.lion-mouth {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  top: 70px;
+  background-color: black;
+  animation: roar 4s infinite ease-out;
+  animation-delay: 1s;
+}
+
+.lion-head {
+  width: 150px;
+  height: 150px;
+  background-color: #765117;
+  animation: shake-head 3s infinite;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  top: -76px;
+  left: -5px;
+  animation: shake-head 4s infinite ease-out;
+  &-color {
+    background-color: #a87a33;
+    width: 140px;
+    height: 140px;
+    border-radius: 5%;
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      right: 0;
+      left: 0;
+      border-radius: 5%;
+      background-color: #a87a33;
+    }
+    &::after {
+      transform: rotate(30deg);
+    }
+    &::before {
+      transform: rotate(60deg);
+    }
+  }
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    right: 0;
+    left: 0;
+    height: 100%;
+    background-color: #765117;
+  }
+  &::after {
+    transform: rotate(30deg);
+  }
+  &::before {
+    transform: rotate(60deg);
+  }
+}
+
+.lion-body {
+  background-color: #a87a33;
+  width: 153px;
+  height: 112px;
+  left: -8px;
+  top: 60px;
+  border: 3px solid #765117;
+}
+
+.lion-paw {
+  width: 47px;
+  height: 33px;
+  top: 116px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 10px;
+  border: 3px solid #765117;
+  background-color: #a87a33;
+  position: absolute;
+  &-left {
+    left: -10px;
+  }
+  &-right {
+    left: 100px;
+  }
+}
+
+.lion-cheek {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  top: 40px;
+  background-color: #f7e4da;
+  border-radius: 40%;
+  &-left {
+    left: -10px;
+  }
+  &-right {
+    right: -10px;
+  }
+}
+
+@keyframes shake-head {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(3deg);
+    transform: rotate(3deg);
+  }
+  50% {
+    -webkit-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+  }
+}
+
+@keyframes roar {
+  0% {
+    width: 10px;
+    height: 10px;
+  }
+  20% {
+    width: 40px;
+    height: 30px;
+  }
+  50% {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@keyframes blink {
+  0% {
+    height: 25px;
+  }
+  5% {
+    height: 5px;
+  }
+  10% {
+    height: 25px;
+  }
+}
 </style>
