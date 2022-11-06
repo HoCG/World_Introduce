@@ -11,12 +11,13 @@
 </template>
 <style lang="scss">
 .frog-container {
+  scale: 0.3;
   height: 400px;
   width: 400px;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+  top: 400px;
+  left: 1000px;
 }
 .frog-face {
   background-color: #8ebc00;

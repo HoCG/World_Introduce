@@ -1,5 +1,10 @@
 <template>
-  <div class="tree-area" @mouseover="appleDrop" @mouseleave="appleReturn">
+  <div
+    class="tree-area"
+    @mouseover="appleDrop"
+    @mouseleave="appleReturn"
+    :style="treeStyle"
+  >
     <div class="tree">
       <div class="tree-trunk"></div>
       <div class="tree-leaf"></div>
@@ -17,9 +22,13 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, StyleValue } from "vue";
 export default defineComponent({
   setup() {
+    const treeStyle: StyleValue = {
+      top: "300px",
+      position: "absolute",
+    };
     const appleDrop = () => {
       const treeLeaf = document.getElementsByClassName("tree-leaf")[0];
       if (!treeLeaf.classList.contains("tree-leaf-dropped")) {
@@ -40,7 +49,7 @@ export default defineComponent({
         treeLeaf.classList.remove("tree-leaf-dropped");
       }
     };
-    return { appleDrop, appleReturn };
+    return { appleDrop, appleReturn, treeStyle };
   },
 });
 </script>

@@ -1,13 +1,13 @@
 <template>
-  <AppleTree></AppleTree>
+  <Land></Land>
 </template>
 
 <script lang="ts">
-import AppleTree from "../components/plants/AppleTree.vue";
+import Land from "../components/plants/Land.vue";
 import { defineComponent } from "vue";
 export default defineComponent({
   components: {
-    AppleTree,
+    Land,
   },
 });
 </script>

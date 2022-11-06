@@ -39,9 +39,9 @@ export default {};
 }
 
 .lion {
-  top: 90px;
+  top: 500px;
   position: absolute;
-  left: 40px;
+  left: 800px;
 }
 
 .lion-face {

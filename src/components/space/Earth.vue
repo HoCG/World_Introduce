@@ -258,6 +258,9 @@ export default defineComponent({
       earth.getObjectByName("atmosphere").rotation.y += (1 / 16) * 0.01;
       if (cameraAutoRotation) {
         cameraRotation += cameraRotationSpeed;
+        spotLight.position.y = 0;
+        spotLight.position.x = 2 * Math.sin(cameraRotation);
+        spotLight.position.z = 2 * Math.cos(cameraRotation);
         camera.position.y = 0;
         camera.position.x = 2 * Math.sin(cameraRotation);
         camera.position.z = 2 * Math.cos(cameraRotation);
