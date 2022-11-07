@@ -24,7 +24,7 @@
 </template>
 <script lang="ts">
 import Person from "@/components/persons/Person.vue";
-import PersonDialog from "@/components/persons/PersonDialog.vue";
+import PersonDialog from "@/components/persons/personDialog/PersonDialog.vue";
 import { personStore } from "../stores/personStore";
 import data from "../assets/data.json";
 import { defineComponent, ref } from "vue";

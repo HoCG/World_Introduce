@@ -88,6 +88,7 @@ export default defineComponent({
   setup(_, { emit }) {
     //const emit = defineEmits(["closeDialog"]);
     const usePersonStore = personStore();
+    const personArr = usePersonStore.personArr;
     const scaleArr = [-1, 1];
     let newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
     const rand = (min: number, max: number): number => {
@@ -96,7 +97,7 @@ export default defineComponent({
     const savePerson = () => {
       const randomScaleNumber = rand(0, 1);
       newPerson.value._scaleNumber = scaleArr[randomScaleNumber];
-      newPerson.value._speed = rand(5, 9);
+      newPerson.value._speed = speedChecker(rand(5, 15));
       emit("closeDialog");
       usePersonStore.addPerson(newPerson.value as person);
       newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
@@ -116,6 +117,11 @@ export default defineComponent({
     const changeShoesColor = (color: string) => {
       newPerson.value._shoesColor = color;
     };
+    type speedType = {
+      (speed: number): number;
+    };
+    const speedChecker: speedType = (speed: number) =>
+      !personArr.get(speed) ? speed : speedChecker(rand(5, 15));
     const closePersonDialog = () => {
       newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
       emit("closeDialog");

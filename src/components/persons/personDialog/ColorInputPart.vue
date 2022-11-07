@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import ColorDialog from "../colorDialogs/ColorDialog.vue";
+import ColorDialog from "../../colorDialogs/ColorDialog.vue";
 
 export default defineComponent({
   components: {
