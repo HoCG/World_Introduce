@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import OceanText from "@/components/oceans/OceanText.vue";
-import Ocean from "../components/oceans/Ocean.vue";
+import Ocean from "@/components/oceans/Ocean.vue";
 export default defineComponent({
   components: {
     Ocean,

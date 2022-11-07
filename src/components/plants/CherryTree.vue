@@ -11,6 +11,7 @@
 <style lang="scss">
 /* cherry-tree wrapper */
 .cherry-tree {
+  z-index: 3;
   scale: 0.5;
   width: 200px;
   height: 300px;

@@ -1,44 +1,53 @@
 <template>
-  <div class="lion">
-    <div class="center-lion lion-body"></div>
-    <div class="center-lion lion-face">
-      <div class="center-lion lion-face-nose"></div>
-      <div class="center-lion lion-nose-thingy-under"></div>
-      <div class="center-lion lion-mouth"></div>
-      <div class="lion-cheek lion-cheek-left"></div>
-      <div class="lion-cheek lion-cheek-right"></div>
+  <div class="female_lion">
+    <div class="center-female_lion female_lion-body"></div>
+    <div class="center-female_lion female_lion-face">
+      <div class="center-female_lion female_lion-ear">
+        <div class="center-female_lion female_lion-ear__inner"></div>
+      </div>
+      <div class="center-female_lion female_lion-ear">
+        <div class="center-female_lion female_lion-ear__inner"></div>
+      </div>
+      <div class="center-female_lion female_lion-face-nose"></div>
+      <div class="center-female_lion female_lion-nose-thingy-under"></div>
+      <div class="center-female_lion female_lion-mouth"></div>
+      <div class="female_lion-cheek female_lion-cheek-left"></div>
+      <div class="female_lion-cheek female_lion-cheek-right"></div>
     </div>
-    <div class="center-lion lion-paw lion-paw-left">
-      <div class="lion-nail lion-nail-1"></div>
-      <div class="lion-nail lion-nail-2"></div>
-      <div class="lion-nail lion-nail-3"></div>
+    <div class="center-female_lion female_lion-paw female_lion-paw-left">
+      <div class="female_lion-nail female_lion-nail-1"></div>
+      <div class="female_lion-nail female_lion-nail-2"></div>
+      <div class="female_lion-nail female_lion-nail-3"></div>
     </div>
-    <div class="center-lion lion-paw lion-paw-right">
-      <div class="lion-nail lion-nail-4"></div>
-      <div class="lion-nail lion-nail-2"></div>
-      <div class="lion-nail lion-nail-5"></div>
+    <div class="center-female_lion female_lion-paw female_lion-paw-right">
+      <div class="female_lion-nail female_lion-nail-4"></div>
+      <div class="female_lion-nail female_lion-nail-2"></div>
+      <div class="female_lion-nail female_lion-nail-5"></div>
     </div>
   </div>
 </template>
 <style lang="scss">
-.center-lion {
+.center-female_lion {
   position: absolute;
   top: 50%;
   right: 0;
   margin: auto;
   left: 0;
-  -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+.female_lion {
+  scale: 0.6;
+  z-index: 3;
+}
 
-.lion:hover {
-  .lion-mouth {
+.female_lion:hover {
+  .female_lion-mouth {
     animation: roar 4s infinite ease-out;
     //animation-delay: 1s;
   }
 }
 
-.lion-face {
+.female_lion-face {
   width: 110px;
   height: 90px;
   left: 13px;
@@ -74,7 +83,7 @@
   }
 }
 
-.lion-nail {
+.female_lion-nail {
   width: 3px;
   height: 20px;
   bottom: 0;
@@ -99,14 +108,14 @@
   }
 }
 
-.lion-nose-thingy-under {
+.female_lion-nose-thingy-under {
   width: 3px;
   top: 50px;
   height: 23px;
   background-color: black;
 }
 
-.lion-mouth {
+.female_lion-mouth {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -114,7 +123,7 @@
   background-color: black;
 }
 
-.lion-body {
+.female_lion-body {
   background-color: #a87a33;
   width: 153px;
   height: 112px;
@@ -123,7 +132,44 @@
   border: 3px solid #765117;
 }
 
-.lion-paw {
+.female_lion-ear {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: -60px;
+  top: -30px;
+  border-bottom: 35px solid #be924d;
+  border-top: 35px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  &__inner {
+    position: absolute;
+    left: -8px;
+    top: 10px;
+    border-bottom: 20px solid black;
+    border-top: 20px solid transparent;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+  }
+  + .female_lion-ear {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 60px;
+    top: -30px;
+    &__inner {
+      position: absolute;
+      left: -8px;
+      top: 10px;
+      border-bottom: 20px solid black;
+      border-top: 20px solid transparent;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
+  }
+}
+
+.female_lion-paw {
   width: 47px;
   height: 33px;
   top: 116px;
@@ -142,7 +188,7 @@
   }
 }
 
-.lion-cheek {
+.female_lion-cheek {
   position: absolute;
   width: 20px;
   height: 10px;
@@ -154,21 +200,6 @@
   }
   &-right {
     right: -10px;
-  }
-}
-
-@keyframes shake-head {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  20% {
-    -webkit-transform: rotate(3deg);
-    transform: rotate(3deg);
-  }
-  50% {
-    -webkit-transform: rotate(-3deg);
-    transform: rotate(-3deg);
   }
 }
 

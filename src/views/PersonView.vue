@@ -27,7 +27,7 @@ import Person from "@/components/persons/Person.vue";
 import PersonDialog from "@/components/persons/personDialog/PersonDialog.vue";
 import { personStore } from "../stores/personStore";
 import data from "../assets/data.json";
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import person from "@/stores/person";
 
 export default defineComponent({
@@ -49,23 +49,31 @@ export default defineComponent({
     const rand = (min: number, max: number): number => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     };
-    for (const getPerson of data.person) {
-      const randomScaleNumber = rand(0, 1);
-      const personInfo = new person(
-        getPerson.name,
-        getPerson.gender,
-        getPerson.age,
-        getPerson.personalColor,
-        getPerson.hairColor,
-        getPerson.topClothColor,
-        getPerson.bottomClothColor,
-        getPerson.shoesColor,
-        scaleArr[randomScaleNumber],
-        rand(5, 9)
-      ) as person;
-      usePersonStore.addPerson(personInfo as person);
-    }
+    type speedType = {
+      (speed: number): number;
+    };
     const personArr: Map<number, person> = usePersonStore.personArr;
+    const speedChecker: speedType = (speed: number) =>
+      !personArr.get(speed) ? speed : speedChecker(rand(5, 15));
+    onMounted(() => {
+      for (const getPerson of data.person) {
+        const randomScaleNumber = rand(0, 1);
+        const speed = speedChecker(rand(5, 15));
+        const personInfo = new person(
+          getPerson.name,
+          getPerson.gender,
+          getPerson.age,
+          getPerson.personalColor,
+          getPerson.hairColor,
+          getPerson.topClothColor,
+          getPerson.bottomClothColor,
+          getPerson.shoesColor,
+          scaleArr[randomScaleNumber],
+          speed
+        ) as person;
+        usePersonStore.addPerson(personInfo as person);
+      }
+    });
     return {
       dialog,
       personArr,

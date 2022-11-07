@@ -34,7 +34,8 @@
 }
 
 .lion {
-  scale: 0.8;
+  scale: 0.6;
+  z-index: 3;
 }
 
 .lion:hover {
