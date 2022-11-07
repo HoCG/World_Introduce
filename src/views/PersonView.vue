@@ -1,10 +1,12 @@
 <template>
   <div class="person-view">
-    <div class="person-view-text">
-      지구에는 수많은 사람들이 함께살고있어 보이지?
-    </div>
-    <div class="person-view-text">
-      사람들은 서로다른 모습, 서로다른 생각을 하며 살고있지
+    <div class="person-view-text-box">
+      <h1 class="person-view-text">
+        지구에는 수많은 사람들이 함께살고있어 보이지?
+      </h1>
+      <h1 class="person-view-text">
+        사람들은 서로다른 모습, 서로다른 생각을 하며 살고있지
+      </h1>
     </div>
     <div class="person-box">
       <Person
@@ -74,6 +76,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+@import url(https://fonts.googleapis.com/css?family=Rammetto+One);
 .person-view {
   display: flex;
   width: 100%;
@@ -81,8 +84,15 @@ export default defineComponent({
   flex-direction: column;
   align-items: center;
   &-text {
-    font-weight: 600;
-    font-size: larger;
+    margin: 3rem auto -2rem;
+    font-size: 3.5rem;
+    letter-spacing: -2px;
+    color: #fff;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #0fa,
+      0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+  }
+  .person-view-text-box {
+    margin-bottom: 40px;
   }
   .person-box {
     display: flex;

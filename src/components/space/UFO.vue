@@ -37,7 +37,7 @@
 		70% { top: 49.5%; left: 49.5%; }
 		100% { top: 49.5%; left: 50.5%; }
 	});
-  .keyframes(movement;{
+  .keyframes(fly_movement;{
     0% {
       transform: scale(0.01) rotate(15deg);
     }
@@ -46,7 +46,7 @@
       transform: scale( 1 ) rotate(15deg) translateX(-150px) translateY(400px);
     }
   });
-  .animation(movement 2s forwards cubic-bezier(0.02, 0.04, 0.21, 1));
+  .animation(fly_movement 2s forwards cubic-bezier(0.02, 0.04, 0.21, 1));
   .aa;
   @media all and (max-width: 768px) and (orientation: landscape) {
     margin-top: -50px;

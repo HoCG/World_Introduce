@@ -1,7 +1,12 @@
 <template>
   <div class="input-part">
     <div class="input-part__label">{{ pickColorText }}</div>
-    <div class="color-element" :style="{ backgroundColor: pickColor }"></div>
+    <div class="color-element__cover">
+      <div class="color-element__text" :style="{ color: pickColor }">
+        {{ pickColor }}
+      </div>
+      <div class="color-element" :style="{ backgroundColor: pickColor }"></div>
+    </div>
     <div class="color-dialog-btn" @click="openColorDialog">go</div>
     <ColorDialog
       v-if="colorDialog"

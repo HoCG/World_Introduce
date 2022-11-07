@@ -2,7 +2,7 @@
   <div class="dialog">
     <div class="dialog-body">
       <div class="dialog-title">사람의 정보를 입력해줘야해!</div>
-      <div class="close-btn" @click="$emit('closeDialog')"></div>
+      <div class="close-btn" @click="closePersonDialog()"></div>
       <div class="dialog-content">
         <div class="input-part">
           <div class="input-part__label">이름:</div>
@@ -22,11 +22,24 @@
             v-model="newPerson._age"
           />
         </div>
-        <div class="checkbox-part__gender">
-          <input type="checkbox" value="남" name="성별" @click="checkOnlyOne" />
-          남
-          <input type="checkbox" value="여" name="성별" @click="checkOnlyOne" />
-          여
+        <div class="checkbox-part">
+          <div class="checkbox-part__label">성별:</div>
+          <div class="checkbox-part__gender">
+            <input
+              type="radio"
+              value="남"
+              name="성별"
+              v-model="newPerson._gender"
+            />
+            남
+            <input
+              type="radio"
+              value="여"
+              name="성별"
+              v-model="newPerson._gender"
+            />
+            여
+          </div>
         </div>
         <ColorInputPart
           :pickColor="newPerson._personalColor"
@@ -56,7 +69,7 @@
       </div>
       <div class="dialog-control-area">
         <div class="dialog-save-btn" @click="savePerson()">저장</div>
-        <div class="dialog-cancel-btn" @click="$emit('closeDialog')">취소</div>
+        <div class="dialog-cancel-btn" @click="closePersonDialog()">취소</div>
       </div>
     </div>
   </div>
@@ -103,18 +116,9 @@ export default defineComponent({
     const changeShoesColor = (color: string) => {
       newPerson.value._shoesColor = color;
     };
-    const checkOnlyOne = (e: Event) => {
-      const checkboxes = document.getElementsByName(
-        "성별"
-      ) as unknown as HTMLInputElement[];
-
-      checkboxes.forEach((cb: HTMLInputElement) => {
-        cb.checked = false;
-      });
-      (e.target as any | HTMLInputElement).checked = true;
-      newPerson.value._gender = (e.target as any | HTMLInputElement).checked
-        ? (e.target as any | HTMLInputElement).value
-        : newPerson.value._gender;
+    const closePersonDialog = () => {
+      newPerson = ref(new person("", "", 0, "", "", "", "", "", 0, 0));
+      emit("closeDialog");
     };
     return {
       newPerson,
@@ -124,7 +128,7 @@ export default defineComponent({
       changeTopClothColor,
       changeBottomClothColor,
       changeShoesColor,
-      checkOnlyOne,
+      closePersonDialog,
     };
   },
 });

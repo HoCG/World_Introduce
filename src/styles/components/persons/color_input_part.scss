@@ -1,0 +1,18 @@
+.color-element__cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+}
+.color-dialog-btn {
+  margin-left: 5px;
+  background-color: purple;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 50px;
+  height: 20px;
+}

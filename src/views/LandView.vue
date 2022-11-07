@@ -33,6 +33,7 @@ section {
 }
 
 .land-text-box {
+  margin-top: -50px;
   margin-bottom: 50px;
 }
 

@@ -1,9 +1,9 @@
 <template>
   <div class="walk-container">
-    <div class="walk-space-text">자! 이제 그들이 움직이는걸 봐봐!</div>
-    <div class="walk-space-text">
+    <h1 class="walk-space-text">자! 이제 그들이 움직이는걸 봐봐!</h1>
+    <h1 class="walk-space-text">
       이렇게 도시속에서 서로 교감하며 살아가고있어~!
-    </div>
+    </h1>
     <div class="walk-space">
       <img src="../assets/city_img.jpg" />
       <template v-for="[index, person] in personArr" :key="index">
@@ -48,8 +48,12 @@ export default defineComponent({
   border-radius: 30px;
   margin: 50px auto;
   &-text {
-    font-weight: 600;
-    font-size: larger;
+    margin: 3rem auto -2rem;
+    font-size: 3rem;
+    letter-spacing: -2px;
+    color: #fff;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff80bf,
+      0 0 82px #ff80bf, 0 0 92px #ff80bf, 0 0 102px #ff80bf, 0 0 151px #ff80bf;
   }
 }
 </style>

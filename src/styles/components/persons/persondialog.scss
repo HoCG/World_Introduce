@@ -72,27 +72,29 @@
       color: #000;
     }
   }
-  .checkbox-part__gender {
-    color: #000;
-    width: 100%;
+  .checkbox-part {
+    margin-top: 13px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    &__label {
+      width: 150px;
+      height: 100%;
+      color: #000;
+    }
+    &__gender {
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      input {
+        font-size: larger;
+        margin-left: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 }
-.color-dialog-btn {
-  margin-left: 5px;
-  background-color: purple;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 25px;
-  cursor: pointer;
-  width: 50px;
-  height: 20px;
-}
-
 
 .close-btn {
   position: absolute;
