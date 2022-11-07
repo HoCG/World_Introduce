@@ -14,10 +14,37 @@
   scale: 0.3;
   height: 400px;
   width: 400px;
-  position: absolute;
   transform: translate(-50%, -50%);
-  top: 400px;
-  left: 1000px;
+}
+.frog-container:hover {
+  .frog-tongue {
+    animation: tongue 3s linear infinite;
+  }
+  .tongue:before {
+    animation: fly 3s linear infinite;
+  }
+}
+@keyframes fly {
+  5% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  22% {
+    opacity: 0;
+  }
+}
+@keyframes tongue {
+  5% {
+    height: 130px;
+  }
+  10% {
+    height: 130px;
+  }
+  25% {
+    height: 0;
+  }
 }
 .frog-face {
   background-color: #8ebc00;
@@ -139,18 +166,6 @@
   transform-origin: 100% 100%;
   bottom: 65px;
   left: 70px;
-  animation: tongue 3s linear infinite;
-}
-@keyframes tongue {
-  5% {
-    height: 130px;
-  }
-  10% {
-    height: 130px;
-  }
-  25% {
-    height: 0;
-  }
 }
 .tongue:before {
   content: "";
@@ -162,17 +177,5 @@
   left: -1.5px;
   opacity: 0;
   box-shadow: 8px -8px 0 -2px #a0a0a0, -8px -8px 0 -2px #a0a0a0;
-  animation: fly 3s linear infinite;
-}
-@keyframes fly {
-  5% {
-    opacity: 1;
-  }
-  20% {
-    opacity: 1;
-  }
-  22% {
-    opacity: 0;
-  }
 }
 </style>

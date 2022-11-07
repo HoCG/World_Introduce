@@ -1,8 +1,6 @@
 <template>
   <div class="lion">
     <div class="center-lion lion-body"></div>
-    <div class="center-lion lion-head"></div>
-    <div class="center-lion lion-head-color"></div>
     <div class="center-lion lion-face">
       <div class="center-lion lion-face-nose"></div>
       <div class="center-lion lion-nose-thingy-under"></div>
@@ -22,11 +20,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {};
-</script>
-
 <style lang="scss">
 .center-lion {
   position: absolute;
@@ -38,10 +31,11 @@ export default {};
   transform: translateY(-50%);
 }
 
-.lion {
-  top: 500px;
-  position: absolute;
-  left: 800px;
+.lion:hover {
+  .lion-mouth {
+    animation: roar 4s infinite ease-out;
+    //animation-delay: 1s;
+  }
 }
 
 .lion-face {
@@ -118,59 +112,6 @@ export default {};
   border-radius: 50%;
   top: 70px;
   background-color: black;
-  animation: roar 4s infinite ease-out;
-  animation-delay: 1s;
-}
-
-.lion-head {
-  width: 150px;
-  height: 150px;
-  background-color: #765117;
-  animation: shake-head 3s infinite;
-  -webkit-transform: rotate(0deg);
-  transform: rotate(0deg);
-  top: -76px;
-  left: -5px;
-  animation: shake-head 4s infinite ease-out;
-  &-color {
-    background-color: #a87a33;
-    width: 140px;
-    height: 140px;
-    border-radius: 5%;
-    &::after,
-    &::before {
-      content: "";
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      right: 0;
-      left: 0;
-      border-radius: 5%;
-      background-color: #a87a33;
-    }
-    &::after {
-      transform: rotate(30deg);
-    }
-    &::before {
-      transform: rotate(60deg);
-    }
-  }
-  &::after,
-  &::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    right: 0;
-    left: 0;
-    height: 100%;
-    background-color: #765117;
-  }
-  &::after {
-    transform: rotate(30deg);
-  }
-  &::before {
-    transform: rotate(60deg);
-  }
 }
 
 .lion-body {

@@ -1,10 +1,6 @@
 <template>
-  <div
-    class="tree-area"
-    @mouseover="appleDrop"
-    @mouseleave="appleReturn"
-    :style="treeStyle"
-  >
+  <div class="tree-area">
+    <!--@mouseover="appleDrop" @mouseleave="appleReturn">-->
     <div class="tree">
       <div class="tree-trunk"></div>
       <div class="tree-leaf"></div>
@@ -22,13 +18,10 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, StyleValue } from "vue";
+import { defineComponent } from "vue";
 export default defineComponent({
   setup() {
-    const treeStyle: StyleValue = {
-      top: "300px",
-      position: "absolute",
-    };
+    /*
     const appleDrop = () => {
       const treeLeaf = document.getElementsByClassName("tree-leaf")[0];
       if (!treeLeaf.classList.contains("tree-leaf-dropped")) {
@@ -49,18 +42,41 @@ export default defineComponent({
         treeLeaf.classList.remove("tree-leaf-dropped");
       }
     };
-    return { appleDrop, appleReturn, treeStyle };
+    return { appleDrop, appleReturn };
+    */
   },
 });
 </script>
 <style lang="scss">
 .tree-area {
-  scale: 0.6;
-  position: absolute;
+  scale: 0.4;
   width: 300px;
   height: 400px;
   display: flex;
   justify-content: center;
+  &:hover {
+    .apple {
+      &1,
+      &2,
+      &3,
+      &4,
+      &5 {
+        transition: all 0.2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      }
+      &1,
+      &2,
+      &3 {
+        top: 370px;
+      }
+      &4 {
+        top: 382px;
+      }
+      &5 {
+        top: 368px;
+        left: 48px;
+      }
+    }
+  }
 }
 .tree {
   position: absolute;

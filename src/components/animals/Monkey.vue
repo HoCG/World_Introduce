@@ -31,9 +31,7 @@
 .monkey {
   --monkey-body-color: #623a0f;
   --face-color: #e8bf77;
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  scale: 0.3;
   transform: translate(-50%, -50%);
   width: 80vmin;
   height: 80vmin;
@@ -49,8 +47,6 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to right, transparent 99%, gray 0),
-      linear-gradient(to bottom, transparent 99%, gray 0), url();
     background-size: 10% 100%, 100% 10%, cover;
   }
 }
@@ -295,45 +291,43 @@
     left: -5vmin;
     transform: rotate(33deg);
   }
-}
-
-.monkey-leg-foot {
-  width: 7vmin;
-  height: 4vmin;
-  border-radius: 46% 3% 17% 35%;
-  background: var(--face-color);
-  bottom: 13%;
-  left: 28%;
-  + .monkey-leg-foot {
-    border-radius: 3% 35% 46% 17%;
-    left: 62%;
+  &-foot {
+    width: 7vmin;
+    height: 4vmin;
+    border-radius: 46% 3% 17% 35%;
+    background: var(--face-color);
+    bottom: 13%;
+    left: 28%;
+    + .monkey-leg-foot {
+      border-radius: 3% 35% 46% 17%;
+      left: 62%;
+    }
   }
-}
-
-.monkey-leg-hair {
-  width: 0vmin;
-  height: 0vmin;
-  bottom: -8.4vmin;
-  left: 6.35vmin;
-  transform: rotate(323deg);
-  border-left: 0vmin solid transparent;
-  border-right: 1vmin solid transparent;
-  border-top: 2vmin solid var(--monkey-body-color);
-  &::before,
-  &::after {
+  &-hair {
     width: 0vmin;
     height: 0vmin;
-    bottom: -82%;
-    transform: rotate(-23deg);
+    bottom: -8.4vmin;
+    left: 6.35vmin;
+    transform: rotate(323deg);
     border-left: 0vmin solid transparent;
     border-right: 1vmin solid transparent;
     border-top: 2vmin solid var(--monkey-body-color);
-  }
-  &::before {
-    left: 1vmin;
-  }
-  &::after {
-    left: 2vmin;
+    &::before,
+    &::after {
+      width: 0vmin;
+      height: 0vmin;
+      bottom: -82%;
+      transform: rotate(-23deg);
+      border-left: 0vmin solid transparent;
+      border-right: 1vmin solid transparent;
+      border-top: 2vmin solid var(--monkey-body-color);
+    }
+    &::before {
+      left: 1vmin;
+    }
+    &::after {
+      left: 2vmin;
+    }
   }
 }
 
