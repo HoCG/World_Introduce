@@ -1,5 +1,5 @@
 <template>
-  <div class="land-view">
+  <div class="land-container">
     <Lion :style="lionPositionStyle"></Lion>
     <Frog :style="frogPositionStyle"></Frog>
     <Monkey :style="monkeyPositionStyle"></Monkey>
@@ -34,8 +34,8 @@ export default defineComponent({
       position: "absolute",
     };
     const monkeyPositionStyle: StyleValue = {
-      top: "500px",
-      left: "800px",
+      top: "300px",
+      left: "-100px",
       position: "absolute",
     };
     const frogPositionStyle: StyleValue = {
@@ -89,7 +89,8 @@ export default defineComponent({
 </script>
 
 <style>
-.land-view {
+.land-container {
+  position: relative;
   width: 1200px;
   height: 673px;
   background-image: url("../../assets/land.jpg");

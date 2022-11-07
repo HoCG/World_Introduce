@@ -13,7 +13,11 @@
       </div>
     </div>
     <div class="monkey-body"></div>
-    <div class="monkey-hand monkey-style"></div>
+    <div class="monkey-hand monkey-style">
+      <div class="monkey-hand-otherpiece">
+        <div class="monkey-hand-mainpiece"></div>
+      </div>
+    </div>
     <div class="monkey-hand monkey-style"></div>
     <div class="monkey-leg monkey-style">
       <div class="monkey-leg-hair monkey-style"></div>
@@ -48,6 +52,26 @@
     width: 100%;
     height: 100%;
     background-size: 10% 100%, 100% 10%, cover;
+  }
+}
+.monkey:hover {
+  .monkey-hand {
+    &-otherpiece {
+      transform-origin: 100% 0%;
+      animation: movement 0.5s alternate infinite ease-out;
+    }
+  }
+}
+@keyframes movement {
+  from {
+    top: 35%;
+    left: -140%;
+    transform: rotate(0deg);
+  }
+  to {
+    top: 35%;
+    left: -140%;
+    transform: rotate(90deg);
   }
 }
 
@@ -215,24 +239,24 @@
   border-radius: 22% 0 0 29%;
   transform: rotate(-21deg);
   z-index: 0;
-  &:before {
+  &-otherpiece {
     width: 9vmin;
     height: 3vmin;
     background: var(--monkey-body-color);
-    left: -56%;
+    left: -100%;
     right: 0;
     margin: auto;
-    top: 103%;
+    top: -90%;
     border-radius: 22% 20% 0 29%;
-    transform: rotate(69deg);
+    transform: rotate(-270deg);
   }
-  &:after {
+  &-mainpiece {
     width: 5vmin;
     height: 5vmin;
     background: var(--face-color);
     border-radius: 50%;
-    top: 180%;
-    left: 11%;
+    top: -30%;
+    left: -30%;
   }
   + .monkey-hand {
     left: 27%;
@@ -241,8 +265,13 @@
     &::before {
       left: 27%;
       top: 148%;
+      background: var(--monkey-body-color);
       border-radius: 22% 20% 0 29%;
       transform: rotate(113deg);
+      width: 9vmin;
+      height: 3vmin;
+      background: var(--monkey-body-color);
+      margin: auto;
     }
     &::after {
       width: 5vmin;
