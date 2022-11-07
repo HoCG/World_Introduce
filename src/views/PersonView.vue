@@ -53,9 +53,9 @@ export default defineComponent({
       (speed: number): number;
     };
     const personArr: Map<number, person> = usePersonStore.personArr;
-    const speedChecker: speedType = (speed: number) =>
-      !personArr.get(speed) ? speed : speedChecker(rand(5, 15));
     onMounted(() => {
+      const speedChecker: speedType = (speed: number) =>
+        !personArr.get(speed) ? speed : speedChecker(rand(5, 15));
       for (const getPerson of data.person) {
         const randomScaleNumber = rand(0, 1);
         const speed = speedChecker(rand(5, 15));

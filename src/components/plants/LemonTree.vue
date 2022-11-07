@@ -1,6 +1,6 @@
 <template>
   <div class="tree-area">
-    <!--@mouseover="appleDrop" @mouseleave="appleReturn">-->
+    <!--@mouseover="lemonDrop" @mouseleave="lemonReturn">-->
     <div class="tree">
       <div class="tree-trunk"></div>
       <div class="tree-leaf"></div>
@@ -8,12 +8,12 @@
       <div class="tree-middle"></div>
       <div class="tree-top"></div>
     </div>
-    <div class="apples">
-      <div class="apple apple1"></div>
-      <div class="apple apple2"></div>
-      <div class="apple apple3"></div>
-      <div class="apple apple4"></div>
-      <div class="apple apple5"></div>
+    <div class="lemons">
+      <div class="lemon lemon1"></div>
+      <div class="lemon lemon2"></div>
+      <div class="lemon lemon3"></div>
+      <div class="lemon lemon4"></div>
+      <div class="lemon lemon5"></div>
     </div>
   </div>
 </template>
@@ -26,14 +26,7 @@
   display: flex;
   justify-content: center;
   &:hover {
-    .apple {
-      &1,
-      &2,
-      &3,
-      &4,
-      &5 {
-        transition: all 0.2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
-      }
+    .lemon {
       &1,
       &2,
       &3 {
@@ -57,7 +50,7 @@
   justify-content: center;
   cursor: pointer;
 }
-.apples {
+.lemons {
   top: 80px;
 }
 .tree-trunk {
@@ -157,14 +150,12 @@
     border-bottom: 4px solid rgb(51, 117, 97);
   }
 }
-.apple {
+.lemon {
   position: absolute;
-  background-color: rgb(179, 46, 23);
   width: 40px;
-  height: 38px;
-  border-radius: 55% 57% 40% 42% / 64% 65% 70% 68%;
-  border-left: 3px solid rgb(180, 76, 57);
-  border-right: 1px solid rgb(122, 40, 26);
+  height: 40px;
+  background-color: #ef3;
+  border-radius: 5% 70% 20%;
   &1 {
     top: 60px;
     left: 120px;
@@ -195,18 +186,6 @@
   &5 {
     transition: all 0.2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
   }
-  &1-dropped,
-  &2-dropped,
-  &3-dropped {
-    top: 370px;
-  }
-  &4-dropped {
-    top: 382px;
-  }
-  &5-dropped {
-    top: 368px;
-    left: 48px;
-  }
   &::after {
     position: absolute;
     content: "";
@@ -221,11 +200,6 @@
     content: "";
     width: 8px;
     height: 12px;
-    background-image: radial-gradient(
-      rgba(207, 54, 27, 0.575) 80%,
-      rgba(207, 54, 27, 0.541) 85%,
-      rgba(179, 46, 23, 0.342) 90%
-    );
     top: 4px;
     left: 6px;
     border-radius: 50%;

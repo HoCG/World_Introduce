@@ -29,13 +29,6 @@
     .apple {
       &1,
       &2,
-      &3,
-      &4,
-      &5 {
-        transition: all 0.2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
-      }
-      &1,
-      &2,
       &3 {
         top: 370px;
       }
@@ -194,18 +187,6 @@
   &4,
   &5 {
     transition: all 0.2s cubic-bezier(0.755, 0.05, 0.855, 0.06);
-  }
-  &1-dropped,
-  &2-dropped,
-  &3-dropped {
-    top: 370px;
-  }
-  &4-dropped {
-    top: 382px;
-  }
-  &5-dropped {
-    top: 368px;
-    left: 48px;
   }
   &::after {
     position: absolute;
