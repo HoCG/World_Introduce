@@ -271,6 +271,7 @@ export default defineComponent({
     };
     onMounted(() => {
       render();
+      renderer.domElement.style.marginTop = "50px";
       (document.getElementById("earth") as HTMLElement).appendChild(
         renderer.domElement
       );
@@ -278,9 +279,3 @@ export default defineComponent({
   },
 });
 </script>
-<style>
-.earth {
-  position: absolute;
-  top: -100px;
-}
-</style>
