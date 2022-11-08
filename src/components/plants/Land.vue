@@ -1,127 +1,63 @@
 <template>
   <div class="land-container">
-    <Lion :style="lionPositionStyle"></Lion>
-    <LionFemale :style="lionFemalePositionStyle"></LionFemale>
-    <Frog :style="frogPositionStyle"></Frog>
-    <Monkey :style="monkeyPositionStyle"></Monkey>
-    <CherryTree :style="cherryTreePositionStyle1"></CherryTree>
-    <CherryTree :style="cherryTreePositionStyle2"></CherryTree>
-    <CherryTree :style="cherryTreePositionStyle3"></CherryTree>
-    <AppleTree :style="appleTreePositionStyle1"></AppleTree>
-    <AppleTree :style="appleTreePositionStyle2"></AppleTree>
-    <AppleTree :style="appleTreePositionStyle3"></AppleTree>
-    <AppleTree :style="appleTreePositionStyle4"></AppleTree>
-    <LemonTree :style="lemonTreePositionStyle1"></LemonTree>
-    <LemonTree :style="lemonTreePositionStyle2"></LemonTree>
-    <LemonTree :style="lemonTreePositionStyle3"></LemonTree>
+    <Lion :style="positionIndex.lionPosition"></Lion>
+    <LionFemale :style="positionIndex.lionFemalePosition"></LionFemale>
+    <Frog :style="positionIndex.frogPosition"></Frog>
+    <Monkey :style="positionIndex.monkeyPosition"></Monkey>
+    <StaticTree
+      v-for="staticTreePosition in positionIndex.staticTreePosition"
+      :style="staticTreePosition"
+      :key="staticTreePosition.top"
+    ></StaticTree>
+    <CherryTree
+      v-for="cherryTreePosition in positionIndex.cherryTreePosition"
+      :style="cherryTreePosition"
+      :key="cherryTreePosition.top"
+    ></CherryTree>
+    <AppleTree
+      v-for="appleTreePosition in positionIndex.appleTreePosition"
+      :style="appleTreePosition"
+      :key="appleTreePosition.top"
+    ></AppleTree>
+    <LemonTree
+      v-for="lemonTreePosition in positionIndex.lemonTreePosition"
+      :style="lemonTreePosition"
+      :key="lemonTreePosition.top"
+    ></LemonTree>
+    <Giraffe
+      :style="positionIndex.giraffePosition"
+      :key="positionIndex.giraffePosition.top"
+    ></Giraffe>
   </div>
 </template>
 
 <script lang="ts">
+import { positionIndex } from "./landIndex";
 import Lion from "../animals/Lion.vue";
 import LionFemale from "../animals/LionFemale.vue";
 import Frog from "../animals/Frog.vue";
 import Monkey from "../animals/Monkey.vue";
+import StaticTree from "./StaticTree.vue";
 import CherryTree from "./CherryTree.vue";
 import AppleTree from "./AppleTree.vue";
 import LemonTree from "./LemonTree.vue";
-import { defineComponent, StyleValue } from "vue";
+import Giraffe from "../animals/Giraffe.vue";
+import { defineComponent } from "vue";
 export default defineComponent({
   components: {
     Lion,
     LionFemale,
     Frog,
     Monkey,
+    StaticTree,
     CherryTree,
     AppleTree,
     LemonTree,
+    Giraffe,
   },
   setup() {
-    const lionPositionStyle: StyleValue = {
-      top: "550px",
-      left: "800px",
-      position: "absolute",
-    };
-    const lionFemalePositionStyle: StyleValue = {
-      top: "550px",
-      left: "650px",
-      position: "absolute",
-    };
-    const frogPositionStyle: StyleValue = {
-      top: "400px",
-      left: "1000px",
-      position: "absolute",
-    };
-    const monkeyPositionStyle: StyleValue = {
-      top: "300px",
-      left: "-100px",
-      position: "absolute",
-    };
-    const cherryTreePositionStyle1: StyleValue = {
-      top: "350px",
-      left: "450px",
-      position: "absolute",
-    };
-    const cherryTreePositionStyle2: StyleValue = {
-      top: "350px",
-      left: "250px",
-      position: "absolute",
-    };
-    const cherryTreePositionStyle3: StyleValue = {
-      top: "330px",
-      left: "350px",
-      position: "absolute",
-    };
-    const appleTreePositionStyle1: StyleValue = {
-      top: "220px",
-      left: "130px",
-      position: "absolute",
-    };
-    const appleTreePositionStyle2: StyleValue = {
-      top: "200px",
-      left: "350px",
-      position: "absolute",
-    };
-    const appleTreePositionStyle3: StyleValue = {
-      top: "180px",
-      left: "550px",
-      position: "absolute",
-    };
-    const appleTreePositionStyle4: StyleValue = {
-      top: "200px",
-      left: "700px",
-      position: "absolute",
-    };
-    const lemonTreePositionStyle1: StyleValue = {
-      top: "210px",
-      left: "250px",
-      position: "absolute",
-    };
-    const lemonTreePositionStyle2: StyleValue = {
-      top: "240px",
-      left: "450px",
-      position: "absolute",
-    };
-    const lemonTreePositionStyle3: StyleValue = {
-      top: "220px",
-      left: "850px",
-      position: "absolute",
-    };
     return {
-      monkeyPositionStyle,
-      lionPositionStyle,
-      lionFemalePositionStyle,
-      frogPositionStyle,
-      cherryTreePositionStyle1,
-      cherryTreePositionStyle2,
-      cherryTreePositionStyle3,
-      appleTreePositionStyle1,
-      appleTreePositionStyle2,
-      appleTreePositionStyle3,
-      appleTreePositionStyle4,
-      lemonTreePositionStyle1,
-      lemonTreePositionStyle2,
-      lemonTreePositionStyle3,
+      positionIndex,
     };
   },
 });

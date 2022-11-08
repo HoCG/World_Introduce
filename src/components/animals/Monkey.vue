@@ -39,6 +39,7 @@
   transform: translate(-50%, -50%);
   width: 80vmin;
   height: 80vmin;
+  z-index: 2;
   div {
     position: absolute;
     display: block;

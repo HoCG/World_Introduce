@@ -16,7 +16,7 @@
       <div class="giraffe-body-patch three"></div>
       <div class="giraffe-body-patch four"></div>
     </div>
-    <div class="neck">
+    <div class="giraffe-neck">
       <div class="giraffe-patch one"></div>
       <div class="giraffe-patch two"></div>
       <div class="giraffe-patch three"></div>
@@ -51,7 +51,7 @@
   height: 600px;
 }
 
-.neck {
+.giraffe-neck {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -62,35 +62,31 @@
   overflow: hidden;
 }
 
-.patch {
+.giraffe-patch {
   position: absolute;
   width: 20px;
   height: 30px;
   border-radius: 50%;
   background: var(--patch-color);
-}
-
-.giraffe-patch.one {
-  left: -5px;
-}
-
-.giraffe-patch.two {
-  transform: rotate(45deg);
-  left: -5px;
-  top: 60px;
-}
-
-.giraffe-patch.three {
-  right: -5px;
-  transform: rotate(75deg);
-  top: 25px;
-}
-
-.giraffe-patch.four {
-  width: 40px;
-  height: 30px;
-  bottom: 0;
-  right: -20px;
+  &.one {
+    left: -5px;
+  }
+  &.two {
+    transform: rotate(45deg);
+    left: -5px;
+    top: 60px;
+  }
+  &.three {
+    right: -5px;
+    transform: rotate(75deg);
+    top: 25px;
+  }
+  &.four {
+    width: 40px;
+    height: 30px;
+    bottom: 0;
+    right: -20px;
+  }
 }
 
 .giraffe-head {
@@ -102,30 +98,26 @@
   height: 65px;
   background: var(--giraffe-body-color);
   border-radius: 20% 20% 50% 50%;
-}
-
-/* Top hair */
-.giraffe-head::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 15px;
-  transform: rotate(45deg);
-  background: var(--hair-color);
-  width: 15px;
-  height: 15px;
-}
-
-/* Second hair piece */
-.giraffe-head::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  transform: rotate(45deg);
-  background: var(--hair-color);
-  right: 15px;
-  top: -7px;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+    background: var(--hair-color);
+    right: 15px;
+    top: -7px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 15px;
+    transform: rotate(45deg);
+    background: var(--hair-color);
+    width: 15px;
+    height: 15px;
+  }
 }
 
 .giraffe-eye {
@@ -142,18 +134,16 @@
   &.right {
     right: 3px;
   }
-}
-
-/* Shine in giraffe-eye */
-.giraffe-eye::after {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: 5px;
-  background: white;
-  border-radius: 50%;
-  right: 2px;
-  bottom: 2px;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    right: 2px;
+    bottom: 2px;
+  }
 }
 
 .giraffe-horn {
@@ -190,14 +180,13 @@
   height: 25px;
   background: var(--giraffe-snout-color);
   border-radius: 50%;
-  ::after {
-    content: "";
+  &::after {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     width: 30px;
     height: 20px;
-    border-radius: 50%;
+    border-radius: 100px;
     border-bottom: 2px solid var(--hair-color);
   }
 }
@@ -289,41 +278,35 @@
     var(--giraffe-body-color)
   );
   top: 250px;
-}
-
-.giraffe-leg.left {
-  transform: rotate(5deg);
-  left: 60px;
-}
-
-.giraffe-leg.right {
-  transform: rotate(-5deg);
-  right: 60px;
-}
-
-.giraffe-leg-patch {
-  position: absolute;
-  top: 20px;
-  width: 10px;
-  height: 10px;
-  background: var(--patch-color);
-  border-radius: 30%;
-}
-
-.giraffe-leg-patch.one {
-  left: -3px;
-}
-
-.giraffe-leg-patch.two {
-  transform: rotate(45deg);
-  left: 10px;
-  top: 25px;
-}
-
-.giraffe-leg-patch.three {
-  top: 35px;
-  left: 5px;
-  width: 5px;
-  height: 5px;
+  &.left {
+    transform: rotate(5deg);
+    left: 60px;
+  }
+  &.right {
+    transform: rotate(-5deg);
+    right: 60px;
+  }
+  &-patch {
+    position: absolute;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background: var(--patch-color);
+    border-radius: 30%;
+    &.one {
+      left: -3px;
+    }
+    &.two {
+      transform: rotate(45deg);
+      left: 10px;
+      top: 25px;
+    }
+    &.three {
+      top: 35px;
+      left: 5px;
+      width: 5px;
+      height: 5px;
+    }
+  }
 }
 </style>
