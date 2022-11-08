@@ -24,10 +24,7 @@
       :style="lemonTreePosition"
       :key="lemonTreePosition.top"
     ></LemonTree>
-    <Giraffe
-      :style="positionIndex.giraffePosition"
-      :key="positionIndex.giraffePosition.top"
-    ></Giraffe>
+    <Giraffe :style="positionIndex.giraffePosition"></Giraffe>
   </div>
 </template>
 

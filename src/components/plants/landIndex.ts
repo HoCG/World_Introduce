@@ -15,7 +15,8 @@ export const positionIndex = {
     position: "absolute",
   },
   monkeyPosition: {
-    top: "250px",
+    zIndex: 3,
+    top: "150px",
     left: "-100px",
     position: "absolute",
   },
