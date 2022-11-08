@@ -9,7 +9,8 @@ vue3로 제작된 사이트이며, typescript문법을 기반으로 작성되었
 
 자 그럼 이제 각 페이지 소개를 해볼게요. 페이지 소개에 앞서서 설명드릴점은 이 사이트는 스크롤시에 다른 페이지의 정보가 가려지는 효과를 적용했습니다. 사용자가 느끼기에는 마치 하나의 페이지만을 보고있는듯한 느낌을 전달해주는거죠.
 
-![Uploading ezgif.com-gif-maker.gif…]()
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/52379503/200474073-53b1aa14-a5bd-4054-a190-901d8fc57b74.gif)
 
 
 # 3-1. 인트로 페이지
