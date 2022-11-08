@@ -35,7 +35,7 @@
 .monkey {
   --monkey-body-color: #623a0f;
   --face-color: #e8bf77;
-  scale: 0.3;
+  scale: 0.2;
   transform: translate(-50%, -50%);
   width: 80vmin;
   height: 80vmin;
@@ -52,7 +52,6 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    background-size: 10% 100%, 100% 10%, cover;
   }
 }
 .monkey:hover {
