@@ -31,6 +31,10 @@
     animation: ManRunning 4s linear;
     top: 20%;
     left: 40%;
+    &-body {
+      transform-origin: 25px 200px;
+      animation: bodyRotate 2s linear 4s forwards;
+    }
     &-eye {
       width: 6px;
       height: 6px;
@@ -102,6 +106,10 @@
     background-color: #fbebcd;
     position: relative;
     z-index: -9999;
+    transform-origin: 0 0;
+    animation: handMovement2 4s ease-out,
+      hand-shaking-ready 2s linear 6s forwards,
+      hand-shaking-man 1s infinite linear 8s;
   }
   &--left-cloth,
   &--right-cloth {
@@ -121,6 +129,7 @@
   }
   &--left-leg,
   &--right-leg {
+    z-index: 2;
     background-color: #6e5290;
     margin-top: 200px;
     margin-left: -7.5px;
@@ -133,10 +142,35 @@
     transform-origin: 0 0;
     animation: handMovement1 4s ease-out;
   }
-  &--right-hand,
   &--left-leg {
     transform-origin: 0 0;
     animation: handMovement2 4s ease-out;
+  }
+}
+
+@keyframes bodyRotate {
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes hand-shaking-ready {
+  0% {
+  }
+  100% {
+    transform: rotate(-35deg) scaleY(1.2);
+  }
+}
+
+@keyframes hand-shaking-man {
+  0% {
+    transform: rotate(-35deg) scaleY(1.2);
+  }
+  50% {
+    transform: rotate(-55deg) scaleY(1.2);
+  }
+  100% {
+    transform: rotate(-35deg) scaleY(1.2);
   }
 }
 

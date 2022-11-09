@@ -29,23 +29,18 @@
   height: 252px;
   width: 100%;
   z-index: 1;
-  border-top-right-radius: 70px;
+  border-top-right-radius: 90px;
   border-top-left-radius: 90px;
 }
 
 .jelly-inner {
   //animation-delay: 4s;
   overflow: hidden;
-  animation: facing-movement 2s linear 4s forwards;
   position: absolute;
-  top: 35%;
-  left: 40%;
-}
-
-@keyframes facing-movement {
-  100% {
-    left: 0%;
-  }
+  height: 252px;
+  width: 100%;
+  top: 30%;
+  left: 0%;
 }
 
 .jelly-eyes {
@@ -55,6 +50,7 @@
   position: absolute;
   top: 20%;
   left: 50%;
+  animation: facing-movement 2s linear 4s forwards;
   border-radius: 50%;
   box-shadow: inset 0px 0px 0px 0.5px #6fdcae;
   transform: translate(-50%, 0%);
@@ -70,7 +66,7 @@
     border-radius: 100%;
     transform: translate(-50%, 0%) scale(1, 1);
     transition: 0.75s;
-    animation: iris 6s ease alternate;
+    animation: iris 4s ease alternate;
   }
 
   &:after {
@@ -81,11 +77,18 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    border-top: 0;
     border-radius: 100%;
     box-shadow: 0px 0px 0px 40px #6fdcae;
     transform: translate(-50%, -50%);
     transition: 0.15s;
     animation: blink-animation 4s ease-out;
+  }
+}
+
+@keyframes facing-movement {
+  100% {
+    left: 0%;
   }
 }
 
@@ -152,7 +155,7 @@
   position: absolute;
   height: 50px;
   width: 45px;
-  border-top: 0;
+  z-index: 2;
   border-radius: 0 0 50% 50%;
   background-color: #6fdcae;
   box-shadow: 0px 5px 6px #3b949b;
@@ -160,23 +163,45 @@
 
 .jelly-hands {
   position: absolute;
-  top: 65px;
+  top: 150px;
+  left: 30%;
+  transform-origin: 0 0;
+  animation: hand-movement1 2s linear 4s forwards;
   &:before {
     @extend %jelly-hand;
     left: 110px;
     transform-origin: 0 0;
-    animation: hand-shaking 2s linear 6s forwards;
+    animation: hand-movement2 2s linear 6s forwards,
+      hand-shaking 1s infinite linear 8s;
+  }
+}
+
+@keyframes hand-movement1 {
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes hand-movement2 {
+  0% {
+  }
+  50% {
+    transform: rotate(60deg) scale(1, 1);
+  }
+  100% {
+    transform: rotate(80deg) scaleY(3);
   }
 }
 
 @keyframes hand-shaking {
   0% {
+    transform: rotate(80deg) scaleY(3);
   }
-  88% {
-    transform: scale(1, 1) rotate(60deg);
+  50% {
+    transform: rotate(100deg) scaleY(3);
   }
   100% {
-    transform: scale(4, 1) rotate(90deg);
+    transform: rotate(80deg) scaleY(3);
   }
 }
 
