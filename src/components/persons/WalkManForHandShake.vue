@@ -129,12 +129,13 @@
   }
   &--left-leg,
   &--right-leg {
-    z-index: 2;
+    z-index: -1;
     background-color: #6e5290;
     margin-top: 200px;
     margin-left: -7.5px;
     height: 125px;
     width: 12.5px;
+    position: absolute;
     float: left;
   }
   &--left-hand,

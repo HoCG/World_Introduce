@@ -17,6 +17,7 @@
 .jelly-wrapper {
   width: 265px;
   position: absolute;
+  z-index: 2;
   top: 55%;
   left: 60%;
   transform: translate3D(-50%, -75%, 0);
@@ -209,6 +210,7 @@ div[class^="jelly-tentacle-"] {
   height: 50px;
   width: 50px;
   position: absolute;
+  bottom: -18%;
   background-color: #6fdcae;
   border-radius: 0 0 25px 25px;
   box-shadow: 0px 2.5px 0px #008d9b;
@@ -312,31 +314,31 @@ div[class^="jelly-tentacle-"] {
 
 @keyframes tentacle-animation {
   0% {
-    bottom: -8%;
+    bottom: -7%;
   }
   12.5% {
-    bottom: -20%;
+    bottom: -19%;
   }
   25% {
-    bottom: -8%;
+    bottom: -7%;
   }
   37.5% {
-    bottom: -20%;
+    bottom: -19%;
   }
   50% {
-    bottom: -8%;
+    bottom: -7%;
   }
   62.5% {
-    bottom: -20%;
+    bottom: -19%;
   }
   75% {
-    bottom: -8%;
+    bottom: -7%;
   }
   87.5% {
-    bottom: -20%;
+    bottom: -19%;
   }
   100% {
-    bottom: -8%;
+    bottom: -7%;
   }
 }
 
